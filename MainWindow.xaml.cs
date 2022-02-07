@@ -23,6 +23,28 @@ namespace WPF_Vehicle_Simulator
         public MainWindow()
         {
             InitializeComponent();
+
+            VehicleCollection vehicleCollection = new VehicleCollection();
+            vehicleCollection.Collection = new List<Vehicle>();
+            //Vehicle x = new Vehicle("čauky");
+            //vehicleCollection.Collection.Add(x);
+            
+        }
+    }
+
+    public class VehicleCollection
+    {
+        public List<Vehicle> Collection;
+    }
+    public class Vehicle
+    {
+        public int ID { get; set; }
+        public double Speed { get; set; }
+        public double Location { get; set; }
+
+        public Vehicle(int id)
+        {
+            ID = id;
         }
     }
 }
