@@ -22,27 +22,15 @@ namespace WPF_Vehicle_Simulator
     {
         public MainWindow()
         {
-            InitializeComponent();
-
-            VehicleCollection vehicleCollection = new VehicleCollection();
-            vehicleCollection.Collection = new List<Vehicle>();
-            Vehicle x = new Vehicle(1);
-            vehicleCollection.Collection.Add(x);
-            Vehicle xs = new Vehicle(2);
-            vehicleCollection.Collection.Add(xs);
-            Vehicle xss = new Vehicle(3);
-            vehicleCollection.Collection.Add(xss);
-            //ConsoleList consoleList = new ConsoleList();
-            foreach (var item in ConsoleList.Commands)
-            {
-                //testBlock.Text += item.ToString();
-            }
-            
+            InitializeComponent();           
+                     
         }
 
         private void btnNewVehicle_Click(object sender, RoutedEventArgs e)
         {
-
+            Vehicle vehicle = new Vehicle();
+            VehicleCollection.Collection.Add(vehicle);
+            txtLog.Text = ConsoleList.GetCommandsList();
         }
 
         private void btnVehicles_Click(object sender, RoutedEventArgs e)
@@ -60,15 +48,20 @@ namespace WPF_Vehicle_Simulator
 
         }
     }
-
-    public class VehicleCollection
+    /// <summary>
+    /// Vehicles collections to save data
+    /// </summary>
+    static public class VehicleCollection
     {
-        public List<Vehicle> Collection;
+        static public List<Vehicle> Collection = new List<Vehicle>();
     }
 
+    /// <summary>
+    /// Static class to save ID count
+    /// </summary>
     public static class AllID
     {
-        public static int IDVehicles;
+        public static int IDVehiclesCounter = 1;
     }
 
     public class Vehicle
@@ -77,18 +70,20 @@ namespace WPF_Vehicle_Simulator
         public double Speed { get; set; }
         public double Location { get; set; }
 
-        public Vehicle(int id)
+        public Vehicle()
         {
-            ID = id;
+            ID = AllID.IDVehiclesCounter;
             Speed = 0.0;
             GetCommand();
             //Location = defult/set
+            AllID.IDVehiclesCounter++;
         }
-
+        /// <summary>
+        /// Add Command to Command list
+        /// </summary>
         public void GetCommand()
-        {
-
-            Command command = new Command("CAR CREATE", "You created a car with id #" + ID);
+        {            
+            Command command = new Command("Vehicle CREATE", "You created a vehicle with id #" + ID);
             ConsoleList.Commands.Add(command);
         }
     }
@@ -108,12 +103,14 @@ namespace WPF_Vehicle_Simulator
         /// <summary>
         /// Get List of your commands in string
         /// </summary>
-        public static void GetCommandsList()
+        public static string GetCommandsList()
         {
+            string s = "";
             foreach (var item in Commands)
             {
-                item.ToString();
+                s += item.ToString();
             }
+            return s;
         }
         public static void GetCommand(Command command)
         {

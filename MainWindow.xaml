@@ -16,7 +16,7 @@
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
 
-        <RichTextBox Grid.Column="0" Grid.Row="0" Margin="5" 
+        <TextBox x:Name="txtLog" Grid.Column="0" Grid.Row="0" Margin="5" 
                      Background="LightGray"/>
 
         <Grid Grid.Row="1">
