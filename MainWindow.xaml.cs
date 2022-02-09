@@ -51,6 +51,11 @@ namespace WPF_Vehicle_Simulator
         public List<Vehicle> Collection;
     }
 
+    public static class AllID
+    {
+        public static int IDVehicles;
+    }
+
     public class Vehicle
     {
         public int ID { get; set; }
@@ -67,6 +72,7 @@ namespace WPF_Vehicle_Simulator
 
         public void GetCommand()
         {
+
             Command command = new Command("CAR CREATE", "You created a car with id #" + ID);
             ConsoleList.Commands.Add(command);
         }
