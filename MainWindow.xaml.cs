@@ -98,7 +98,7 @@ namespace WPF_Vehicle_Simulator
         /// </summary>
         public void GetCommand()
         {            
-            Command command = new Command("Vehicle CREATE", "You created a vehicle with id #" + ID);
+            Command command = new Command($"Vehicle CREATE", $"Vehicle ID: #{ID} | Speed: {Speed}km/h | Route: {route}");
             ConsoleList.Commands.Add(command);
         }
     }
