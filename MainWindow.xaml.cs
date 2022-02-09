@@ -67,10 +67,10 @@ namespace WPF_Vehicle_Simulator
         }
     }
 
-    public class AutonomusVehicle : Vehicle
+    /*public class AutonomusVehicle : Vehicle
     {
 
-    }
+    }*/
 
     /// <summary>
     /// Working with commands lists 
