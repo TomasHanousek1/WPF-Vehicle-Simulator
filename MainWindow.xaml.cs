@@ -44,6 +44,21 @@ namespace WPF_Vehicle_Simulator
         {
 
         }
+
+        private void btnVehicles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnWeather_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnServices_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class VehicleCollection
