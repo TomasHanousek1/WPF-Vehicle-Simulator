@@ -76,19 +76,19 @@ namespace WPF_Vehicle_Simulator
         public double Location { get; set; }
 
         private TypeOfRoute route;
-        public void SetTypeOfRoute(TypeOfRoute value)
+        public TypeOfRoute CurrentRoute
         {
-            route = value;
-        }
-        public TypeOfRoute GetTypeOfRoute()
-        {
-            return route;
+            get { return route; }
+            set { route = value; }
+            //set -> CurrentRoute = TypeOfRoute.Normal;
+            //get -> TypeOfRoute theRoute = CurrentRoute;
         }
 
         public Vehicle()
         {
             ID = AllID.IDVehiclesCounter;
             Speed = 0.0;
+            route = TypeOfRoute.Normal;
             GetCommand();
             //Location = defult/set
             AllID.IDVehiclesCounter++;
