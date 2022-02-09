@@ -26,8 +26,17 @@ namespace WPF_Vehicle_Simulator
 
             VehicleCollection vehicleCollection = new VehicleCollection();
             vehicleCollection.Collection = new List<Vehicle>();
-            //Vehicle x = new Vehicle("čauky");
-            //vehicleCollection.Collection.Add(x);
+            Vehicle x = new Vehicle(1);
+            vehicleCollection.Collection.Add(x);
+            Vehicle xs = new Vehicle(2);
+            vehicleCollection.Collection.Add(xs);
+            Vehicle xss = new Vehicle(3);
+            vehicleCollection.Collection.Add(xss);
+            //ConsoleList consoleList = new ConsoleList();
+            foreach (var item in ConsoleList.Commands)
+            {
+                testBlock.Text += item.ToString();
+            }
             
         }
     }
@@ -36,6 +45,7 @@ namespace WPF_Vehicle_Simulator
     {
         public List<Vehicle> Collection;
     }
+
     public class Vehicle
     {
         public int ID { get; set; }
@@ -45,6 +55,62 @@ namespace WPF_Vehicle_Simulator
         public Vehicle(int id)
         {
             ID = id;
+            Speed = 0.0;
+            GetCommand();
+            //Location = defult/set
+        }
+
+        public void GetCommand()
+        {
+            Command command = new Command("CAR CREATE", "You created a car with id #" + ID);
+            ConsoleList.Commands.Add(command);
+        }
+    }
+
+    public class AutonomusVehicle : Vehicle
+    {
+
+    }
+
+    /// <summary>
+    /// Working with commands lists 
+    /// </summary>
+    public static class ConsoleList
+    {
+        public static List<Command> Commands = new List<Command>();
+
+        /// <summary>
+        /// Get List of your commands in string
+        /// </summary>
+        public static void GetCommandsList()
+        {
+            foreach (var item in Commands)
+            {
+                item.ToString();
+            }
+        }
+        public static void GetCommand(Command command)
+        {
+            Commands.Add(command);
+        }
+    }
+
+   //enum CommandType { } // type to choose list
+    public class Command
+    {
+        public Command(string name, string content)
+        {
+            CreatedTime = DateTime.Now;
+            Name = name;
+            Content = content;
+        }
+        //CommandType CommandType { get; set; } // type to choose list
+        DateTime CreatedTime { get; set; }
+        string Name { get; set; }
+        string Content { get; set; }
+        public override string ToString()
+        {
+            return string.Format($"{CreatedTime} | {Name} | {Content}\n");
         }
     }
 }
