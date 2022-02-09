@@ -6,4 +6,7 @@
         xmlns:local="clr-namespace:WPF_Vehicle_Simulator"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        
+    </Grid>
 </Window>
