@@ -64,11 +64,26 @@ namespace WPF_Vehicle_Simulator
         public static int IDVehiclesCounter = 1;
     }
 
+    /// <summary>
+    /// Enum of route types
+    /// </summary>
+    public enum TypeOfRoute { Normal, Bridge, Tunnel }
+
     public class Vehicle
     {
         public int ID { get; set; }
         public double Speed { get; set; }
         public double Location { get; set; }
+
+        private TypeOfRoute route;
+        public void SetTypeOfRoute(TypeOfRoute value)
+        {
+            route = value;
+        }
+        public TypeOfRoute GetTypeOfRoute()
+        {
+            return route;
+        }
 
         public Vehicle()
         {
