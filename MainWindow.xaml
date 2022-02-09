@@ -27,7 +27,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Margin="5" Content="Create vehicle"
+            <Button x:Name="btnNewVehicle" Click="btnNewVehicle_Click"
+                    Grid.Column="0" Margin="5" Content="New vehicle"
                     Height="50" />
             <Button Grid.Column="1" Margin="5" Content=""
                     Height="50" />

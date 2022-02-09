@@ -39,6 +39,11 @@ namespace WPF_Vehicle_Simulator
             }
             
         }
+
+        private void btnNewVehicle_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 
     public class VehicleCollection
