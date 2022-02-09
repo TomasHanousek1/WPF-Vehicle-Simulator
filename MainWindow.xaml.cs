@@ -35,7 +35,7 @@ namespace WPF_Vehicle_Simulator
             //ConsoleList consoleList = new ConsoleList();
             foreach (var item in ConsoleList.Commands)
             {
-                testBlock.Text += item.ToString();
+                //testBlock.Text += item.ToString();
             }
             
         }
