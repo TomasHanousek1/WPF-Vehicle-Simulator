@@ -54,5 +54,15 @@
                     Grid.Row="2" Width="110" Content="Services"
                     Height="50" VerticalAlignment="Top" Margin="5"/>
         </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <TextBox Grid.Row="0" />
+            <Button Grid.Row="1" x:Name="butYourCommand" Click="butYourCommand_Click"
+                    Content="Enter command"
+                />
+        </Grid>
     </Grid>
 </Window>

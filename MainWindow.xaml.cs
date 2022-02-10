@@ -47,6 +47,11 @@ namespace WPF_Vehicle_Simulator
         {
 
         }
+
+        private void butYourCommand_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
     /// <summary>
     /// Vehicles collections to save data
@@ -67,7 +72,7 @@ namespace WPF_Vehicle_Simulator
     /// <summary>
     /// Enum of route types
     /// </summary>
-    public enum TypeOfRoute { Normal, Bridge, Tunnel }
+    public enum TypeOfRoute { Normal, Bridge = 5, Tunnel = 10}
 
     public class Vehicle
     {
