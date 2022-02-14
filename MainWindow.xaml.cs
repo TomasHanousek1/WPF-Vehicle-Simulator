@@ -49,7 +49,6 @@ namespace WPF_Vehicle_Simulator
 
         private void btnServices_Click(object sender, RoutedEventArgs e)
         {
-
         }
 
         private void butYourCommand_Click(object sender, RoutedEventArgs e) // edit just test
@@ -141,7 +140,7 @@ namespace WPF_Vehicle_Simulator
     public static class ConsoleList
     {
         public static List<Command> Commands = new List<Command>();
-
+        
         /// <summary>
         /// Get List of your commands in string
         /// </summary>
@@ -175,7 +174,7 @@ namespace WPF_Vehicle_Simulator
         }
         //CommandType CommandType { get; set; } // type to choose list
         DateTime CreatedTime { get; set; }
-        string Name { get; set; }
+        public string Name { get; set; }
         string Content { get; set; }
         public override string ToString()
         {
