@@ -22,6 +22,20 @@ namespace WPF_Vehicle_Simulator
         public VehiclesPage()
         {
             InitializeComponent();
+            Vehicle v1 = new Vehicle();
+            Vehicle v2 = new Vehicle();
+            Vehicle v3 = new Vehicle();
+            VehicleCollection.Collection.Add(v1);
+            VehicleCollection.Collection.Add(v2);
+            VehicleCollection.Collection.Add(v3);
+        }
+
+        private void btnCheckVehicles_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var vehicle in VehicleCollection.Collection)
+            {
+                txtLog.Text += vehicle.ToString();
+            }
         }
     }
 }

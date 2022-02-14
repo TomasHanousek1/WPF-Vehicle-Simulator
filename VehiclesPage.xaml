@@ -20,7 +20,8 @@
                  Background="LightGray"/>
         <Button x:Name="btnCheckVehicles" Grid.Row="1" Width="160"
                 Height="60" HorizontalAlignment="Left" Margin="5"
-                Content="Show All Vehicles" FontSize="16"/>
+                Content="Show All Vehicles" FontSize="16"
+                Click="btnCheckVehicles_Click"/>
         <Grid Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition/>
