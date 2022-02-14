@@ -30,11 +30,16 @@ namespace WPF_Vehicle_Simulator
         {
             Vehicle vehicle = new Vehicle();
             VehicleCollection.Collection.Add(vehicle);
+            txtLog.Text = ConsoleList.GetCommandsList();
         }
 
         private void btnVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            txtLog.Text = ConsoleList.ClearConsole(txtLog.Text);
+            foreach (var item in ConsoleList.Commands)
+            {
+                txtLog.Text += item.ToString();
+            }
         }
 
         private void btnWeather_Click(object sender, RoutedEventArgs e)
@@ -44,6 +49,22 @@ namespace WPF_Vehicle_Simulator
 
         private void btnServices_Click(object sender, RoutedEventArgs e)
         {
+        }
+
+        private void butYourCommand_Click(object sender, RoutedEventArgs e) // edit just test
+        {
+            foreach (var item in VehicleCollection.Collection)
+            {
+                if (Convert.ToInt32(txtYourCommand.Text) == item.ID)
+                {
+                    txtLog.Text = ConsoleList.ClearConsole(txtLog.Text);
+                    foreach (var cmd in item.VehicleCommands)
+                    {
+                        txtLog.Text += cmd.ToString();                       
+                    }
+                }               
+            }
+            txtYourCommand.Clear();
         }
     }
     /// <summary>
@@ -73,6 +94,8 @@ namespace WPF_Vehicle_Simulator
         public double Speed { get; set; }
         public double Location { get; set; }
 
+        public List<Command> VehicleCommands = new List<Command>();
+
         private TypeOfRoute route;
         public TypeOfRoute CurrentRoute
         {
@@ -87,11 +110,23 @@ namespace WPF_Vehicle_Simulator
             ID = AllID.IDVehiclesCounter;
             Speed = 0.0;
             route = TypeOfRoute.Default;
-            
+            GetCommand();
             //Location = defult/set
             AllID.IDVehiclesCounter++;
         }
-      
+        /// <summary>
+        /// Add Command to Command list
+        /// </summary>
+        public void GetCommand()
+        {            
+            Command command = new Command($"Vehicle CREATE", $"Vehicle ID: #{ID} | Speed: {Speed}km/h | Route: {route}");
+            ConsoleList.Commands.Add(command);
+            VehicleCommands.Add(command);
+            Command command1 = new Command($"Vehicle READY", $"Vehicle is ready to drive - location: -Location-");
+            VehicleCommands.Add(command1);
+            Command command2 = new Command($"Vehicle ROUTENOW", $"Vehicle is now {route}");
+            VehicleCommands.Add(command2);
+        }
     }
 
     /*public class AutonomusVehicle : Vehicle
