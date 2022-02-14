@@ -34,16 +34,24 @@
 
             <TextBlock Text="Start Point" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontWeight="Bold"
                        Grid.Row="0"/>
-            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="0"/>
+            <ComboBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="0" x:Name="comboBoxStart">
+                <ComboBoxItem>Prague</ComboBoxItem>
+                <ComboBoxItem>Brno</ComboBoxItem>
+                <ComboBoxItem>Ostrava</ComboBoxItem>
+            </ComboBox>
 
             <TextBlock Text="End Point" VerticalAlignment="Center" Margin="6, 0, 0, 0" FontWeight="Bold"
                        Grid.Row="1"/>
-            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="1"/>
+            <ComboBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="1" x:Name="comboBoxEnd">
+                <ComboBoxItem>Prague</ComboBoxItem>
+                <ComboBoxItem>Brno</ComboBoxItem>
+                <ComboBoxItem>Ostrava</ComboBoxItem>
+            </ComboBox>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
                      Margin="0, 0, 20, 0" Grid.Row="2" Height="30" Content="Create"
-                    FontSize="16" FontWeight="Bold"/>
+                    FontSize="16" FontWeight="Bold" x:Name="btnCreateVehicle" Click="btnCreateVehicle_Click"/>
 
             <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"
                        Grid.Row="4"/>
