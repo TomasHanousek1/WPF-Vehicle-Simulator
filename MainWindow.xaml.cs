@@ -66,6 +66,22 @@ namespace WPF_Vehicle_Simulator
             }
             txtYourCommand.Clear();
         }
+
+        private void butYourCommand_Click(object sender, RoutedEventArgs e) // edit just test
+        {
+            foreach (var item in VehicleCollection.Collection)
+            {
+                if (Convert.ToInt32(txtYourCommand.Text) == item.ID)
+                {
+                    txtLog.Text = ConsoleList.ClearConsole(txtLog.Text);
+                    foreach (var cmd in item.VehicleCommands)
+                    {
+                        txtLog.Text += cmd.ToString();                       
+                    }
+                }               
+            }
+            txtYourCommand.Clear();
+        }
     }
     /// <summary>
     /// Vehicles collections to save data
