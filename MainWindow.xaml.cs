@@ -44,7 +44,6 @@ namespace WPF_Vehicle_Simulator
 
         private void btnServices_Click(object sender, RoutedEventArgs e)
         {
-
         }
     }
     /// <summary>
@@ -99,5 +98,60 @@ namespace WPF_Vehicle_Simulator
     {
 
     }*/
-   
+
+    /// <summary>
+    /// Working with commands lists 
+    /// </summary>
+    public static class ConsoleList
+    {
+        public static List<Command> Commands = new List<Command>();
+
+        /// <summary>
+        /// Get List of your commands in string
+        /// </summary>
+        public static string GetCommandsList()
+        {
+            string s = "";
+            foreach (var item in Commands)
+            {
+                s += item.ToString();
+            }
+            return s;
+        }
+        public static void GetCommand(Command command)
+        {
+            Commands.Add(command);
+        }
+        public static string ClearConsole(string s)
+        {
+           return s = "";
+        }
+    }
+
+   //enum CommandType { } // type to choose list
+    public class Command
+    {
+        public Command(string name, string content)
+        {
+            CreatedTime = DateTime.Now;
+            Name = name;
+            Content = content;
+        }
+        //CommandType CommandType { get; set; } // type to choose list
+        DateTime CreatedTime { get; set; }
+        string Name { get; set; }
+        string Content { get; set; }
+        public override string ToString()
+        {
+            return string.Format($"{CreatedTime} | {Name} | {Content}\n");
+        }
+    }
+
+    public static class YourCommand
+    {
+        public static void CommandInfo(string s) // add split string to command + other parts
+        {
+            
+        }
+    }
 }
