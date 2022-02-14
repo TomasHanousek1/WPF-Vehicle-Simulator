@@ -44,13 +44,13 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <Button x:Name="btnVehicles" Click="btnVehicles_Click"
+            <Button x:Name="btnVehicles"
                     Grid.Row="0" Width="110" Content="Vehicles"
                     Height="50" VerticalAlignment="Top" Margin="5"/>
-            <Button x:Name="btnWeather" Click="btnWeather_Click"
+            <Button x:Name="btnWeather"
                     Grid.Row="1" Width="110" Content="Weather"
                     Height="50" VerticalAlignment="Top" Margin="5"/>
-            <Button x:Name="btnServices" Click="btnServices_Click"
+            <Button x:Name="btnServices"
                     Grid.Row="2" Width="110" Content="Services"
                     Height="50" VerticalAlignment="Top" Margin="5"/>
         </Grid>

@@ -23,5 +23,22 @@ namespace WPF_Vehicle_Simulator
         {
             InitializeComponent();
         }
+
+        private void btnVehicles_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnControlCenter_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMeteoCenter_Click(object sender, RoutedEventArgs e)
+        {
+            MeteoPage mp = new MeteoPage();
+            mp.Show();
+            this.Close();
+        }
     }
 }

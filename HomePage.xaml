@@ -20,10 +20,10 @@
         <TextBox Grid.Column="0" Grid.ColumnSpan="3" Text="Vehicle control system"
                  VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="56"/>
         <Button Grid.Row="1" Width="200" Height="60" Margin="0, 0, 0, 60" HorizontalAlignment="Right"
-                Content="Vehicles" FontSize="20" x:Name="btnVehicles"/>
+                Content="Vehicles" FontSize="20" x:Name="btnVehicles" Click="btnVehicles_Click"/>
         <Button Grid.Row="1" Grid.Column="1" Width="200" Height="60" Margin="0, 0, 0, 60" HorizontalAlignment="Center"
-                Content="Control center" FontSize="20" x:Name="btnControlCenter"/>
+                Content="Control center" FontSize="20" x:Name="btnControlCenter" Click="btnControlCenter_Click"/>
         <Button Grid.Row="1" Grid.Column="3" Width="200" Height="60" Margin="0, 0, 0, 60" HorizontalAlignment="Left"
-                Content="Meteo center" FontSize="20" x:Name="btnMeteoCenter"/>
+                Content="Meteo center" FontSize="20" x:Name="btnMeteoCenter" Click="btnMeteoCenter_Click"/>
     </Grid>
 </Window>
