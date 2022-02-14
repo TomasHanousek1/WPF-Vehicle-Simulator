@@ -31,21 +31,17 @@
                 <RowDefinition/>
             </Grid.RowDefinitions>
 
-            <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"/>
+            <TextBlock Text="Start Point" VerticalAlignment="Center" Margin="0, 0, 0, 0" FontWeight="Bold"
+                       Grid.Row="0"/>
             <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0"/>
+                     Margin="0, 0, 20, 0" Grid.Row="0"/>
 
-            <TextBlock Text="Speed" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontWeight="Bold"
+            <TextBlock Text="End Point" VerticalAlignment="Center" Margin="6, 0, 0, 0" FontWeight="Bold"
                        Grid.Row="1"/>
             <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
                      Margin="0, 0, 20, 0" Grid.Row="1"/>
-
-            <TextBlock Text="Location" VerticalAlignment="Center" Margin="10, 0, 0, 0" FontWeight="Bold"
-                       Grid.Row="2"/>
-            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="2" Text="(Nepovinný)"/>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="3" Height="30" Content="Create"
+                     Margin="0, 0, 20, 0" Grid.Row="2" Height="30" Content="Create"
                     FontSize="16" FontWeight="Bold"/>
 
             <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"
