@@ -30,11 +30,15 @@ namespace WPF_Vehicle_Simulator
         {
             Vehicle vehicle = new Vehicle();
             VehicleCollection.Collection.Add(vehicle);
+            MessageBox.Show("Vehicle created");
         }
 
         private void btnVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            foreach (var vehicle in VehicleCollection.Collection)
+            {
+                txtLog.Text += vehicle.ToString();
+            }
         }
 
         private void btnWeather_Click(object sender, RoutedEventArgs e)
@@ -93,6 +97,10 @@ namespace WPF_Vehicle_Simulator
             AllID.IDVehiclesCounter++;
         }
 
+        public override string ToString()
+        {
+            return $"Vehicle #{ID} \n";
+        }
     }
 
     /*public class AutonomusVehicle : Vehicle
