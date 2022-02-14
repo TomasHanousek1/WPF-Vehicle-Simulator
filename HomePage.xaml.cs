@@ -26,7 +26,9 @@ namespace WPF_Vehicle_Simulator
 
         private void btnVehicles_Click(object sender, RoutedEventArgs e)
         {
-
+            VehiclesPage vp = new VehiclesPage();
+            vp.Show();
+            this.Close();
         }
 
         private void btnControlCenter_Click(object sender, RoutedEventArgs e)

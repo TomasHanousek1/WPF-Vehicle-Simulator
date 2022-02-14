@@ -11,5 +11,50 @@
             <ColumnDefinition Width="5*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="txtLog" Grid.Column="0" Grid.Row="0" Margin="5" 
+                 Background="LightGray"/>
+        <Button x:Name="btnCheckVehicles" Grid.Row="1" Width="160"
+                Height="60" HorizontalAlignment="Left" Margin="5"
+                Content="Show All Vehicles" FontSize="16"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"/>
+            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0"/>
+
+            <TextBlock Text="Speed" VerticalAlignment="Center" Margin="20, 0, 0, 0" FontWeight="Bold"
+                       Grid.Row="1"/>
+            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="1"/>
+
+            <TextBlock Text="Location" VerticalAlignment="Center" Margin="10, 0, 0, 0" FontWeight="Bold"
+                       Grid.Row="2"/>
+            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="2" Text="(Nepovinný)"/>
+            <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="3" Height="30" Content="Create"
+                    FontSize="16" FontWeight="Bold"/>
+
+            <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"
+                       Grid.Row="4"/>
+            <TextBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="4"/>
+            <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
+                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="Delete"
+                    FontSize="16" FontWeight="Bold"/>
+        </Grid>
     </Grid>
 </Window>
