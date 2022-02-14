@@ -86,7 +86,6 @@ namespace WPF_Vehicle_Simulator
             //set -> CurrentRoute = TypeOfRoute.Normal;
             //get -> TypeOfRoute theRoute = CurrentRoute;
         }
-
         public Vehicle()
         {
             ID = AllID.IDVehiclesCounter;

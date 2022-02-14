@@ -1,0 +1,64 @@
+﻿<Window x:Class="WPF_Vehicle_Simulator.MeteoPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_Vehicle_Simulator"
+        mc:Ignorable="d"
+        Title="MeteoPage" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="5*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+
+        <TextBox x:Name="txtLog" Grid.Column="0" Grid.Row="0" Margin="5" 
+                     Background="LightGray"/>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Button Content=""
+                    Grid.Column="0" Margin="5" 
+                    Height="50" />
+            <Button Grid.Column="1" Margin="5" Content=""
+                    Height="50" />
+            <Button Grid.Column="2" Margin="5" Content=""
+                    Height="50" />
+            <Button Grid.Column="3" Margin="5" Content=""
+                    Height="50" />
+        </Grid>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+
+            <Button x:Name="btnVehicles" Click="btnVehicles_Click"
+                    Grid.Row="0" Width="110" Content="Vehicles"
+                    Height="50" VerticalAlignment="Top" Margin="5"/>
+            <Button x:Name="btnWeather" Click="btnWeather_Click"
+                    Grid.Row="1" Width="110" Content="Weather"
+                    Height="50" VerticalAlignment="Top" Margin="5"/>
+            <Button x:Name="btnServices" Click="btnServices_Click"
+                    Grid.Row="2" Width="110" Content="Services"
+                    Height="50" VerticalAlignment="Top" Margin="5"/>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+        </Grid>
+    </Grid>
+</Window>
