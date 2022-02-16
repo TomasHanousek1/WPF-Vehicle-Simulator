@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:WPF_Vehicle_Simulator"
         mc:Ignorable="d"
         Title="VehiclesPage" Height="450" Width="800">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="5*"/>
@@ -36,18 +37,19 @@
                        Grid.Row="0"/>
             <ComboBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
                      Margin="0, 0, 20, 0" Grid.Row="0" x:Name="comboBoxStart">
-                <ComboBoxItem>Prague</ComboBoxItem>
-                <ComboBoxItem>Brno</ComboBoxItem>
-                <ComboBoxItem>Ostrava</ComboBoxItem>
+                <ComboBoxItem Name="startPrague">Prague</ComboBoxItem>
+                <ComboBoxItem Name="startBrno">Brno</ComboBoxItem>
+                <ComboBoxItem Name="startOstrava">Ostrava</ComboBoxItem>
             </ComboBox>
+
 
             <TextBlock Text="End Point" VerticalAlignment="Center" Margin="6, 0, 0, 0" FontWeight="Bold"
                        Grid.Row="1"/>
             <ComboBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
                      Margin="0, 0, 20, 0" Grid.Row="1" x:Name="comboBoxEnd">
-                <ComboBoxItem>Prague</ComboBoxItem>
-                <ComboBoxItem>Brno</ComboBoxItem>
-                <ComboBoxItem>Ostrava</ComboBoxItem>
+                <ComboBoxItem Name="endPrague">Prague</ComboBoxItem>
+                <ComboBoxItem Name="endBrno">Brno</ComboBoxItem>
+                <ComboBoxItem Name="endOstrava">Ostrava</ComboBoxItem>
             </ComboBox>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
                      Margin="0, 0, 20, 0" Grid.Row="2" Height="30" Content="Create"

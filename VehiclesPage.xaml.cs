@@ -26,6 +26,7 @@ namespace WPF_Vehicle_Simulator
 
         private void btnCheckVehicles_Click(object sender, RoutedEventArgs e)
         {
+            txtLog.Clear();
             foreach (var vehicle in VehicleCollection.Collection)
             {
                 txtLog.Text += vehicle.ToString();
@@ -34,22 +35,40 @@ namespace WPF_Vehicle_Simulator
 
         private void btnCreateVehicle_Click(object sender, RoutedEventArgs e)
         {
-            if (comboBoxStart.SelectedItem != null && comboBoxEnd.SelectedItem != null)
+            Destination startDestination = Destination.Prague; // Defaultně z Prahy do Brna
+            Destination endDestination = Destination.Brno;
+
+            if (comboBoxStart.SelectedValue == startPrague)
+                startDestination = Destination.Prague;
+            else if (comboBoxStart.SelectedValue == startBrno)
+                startDestination = Destination.Brno;
+            else if (comboBoxStart.SelectedValue == startOstrava)
+                startDestination = Destination.Ostrava;
+
+            if (comboBoxEnd.SelectedValue == endPrague)
+                endDestination = Destination.Prague;
+            else if (comboBoxEnd.SelectedValue == endBrno)
+                endDestination = Destination.Brno;
+            else if (comboBoxEnd.SelectedValue == endOstrava)
+                endDestination = Destination.Ostrava;
+
+            try
             {
-                if (comboBoxStart.SelectedItem != comboBoxEnd.SelectedItem)
+                if (startDestination != endDestination)
                 {
-                    Vehicle vehicle = new Vehicle((Destionation)comboBoxStart.SelectedItem, (Destionation)comboBoxEnd.SelectedItem);
+                    Vehicle vehicle = new Vehicle(startDestination, endDestination);
                     VehicleCollection.Collection.Add(vehicle);
                     MessageBox.Show("Vehicle created");
                 }
                 else
                 {
-                    MessageBox.Show("Start point is the same as end point");
+                    MessageBox.Show("Start destination is the same as end destination");
                 }
+
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Point not selected");
+                throw;
             }
         }
     }

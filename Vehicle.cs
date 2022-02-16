@@ -13,7 +13,12 @@ namespace WPF_Vehicle_Simulator
     }
 
     public enum TypeOfRoute { Default, Bridge, Tunnel }
-    public enum Destionation { Prague, Brno, Ostrava}
+    public enum Destination
+    {
+        Prague,
+        Brno,
+        Ostrava
+    }
     public class Vehicle
     {
         public int ID { get; set; }
@@ -27,10 +32,11 @@ namespace WPF_Vehicle_Simulator
             //set -> CurrentRoute = TypeOfRoute.Normal;
             //get -> TypeOfRoute theRoute = CurrentRoute;
         }
-        public Destionation StartPoint { get; set; }
-        public Destionation EndPoint { get; set; }
 
-        public Vehicle(Destionation startPoint, Destionation endPoint)
+        public Destination StartPoint { get; set; }
+        public Destination EndPoint { get; set; }
+
+        public Vehicle(Destination startPoint, Destination endPoint)
         {
             ID = AllID.IDVehiclesCounter;
             Speed = 0.0;
