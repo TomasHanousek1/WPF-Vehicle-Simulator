@@ -21,6 +21,7 @@ namespace WPF_Vehicle_Simulator
     }
     public class Vehicle
     {
+        public double Distance { get; set; }
         public int ID { get; set; }
         public double Speed { get; set; }
 
@@ -43,43 +44,29 @@ namespace WPF_Vehicle_Simulator
             route = TypeOfRoute.Default;
             StartPoint = startPoint;
             EndPoint = endPoint;
-            //Location = defult/set
+            Distance = GetDistance(StartPoint, EndPoint);
             AllID.IDVehiclesCounter++;
         }
-
-        public override string ToString()
-        {
-            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} \n";
-        }
-    }
-
-    public class Road
-    {
-        public double Distance { get; set; }
-        public Destination StartPoint { get; set; }
-        public Destination EndPoint { get; set; }
-        public Road(Vehicle vehicle)
-        {
-            StartPoint = vehicle.StartPoint;
-            EndPoint = vehicle.EndPoint;
-            Distance = GetDistance(StartPoint, EndPoint);
-        }
-
-    public double GetDistance(Destination startPoint, Destination endPoint)
+        public double GetDistance(Destination startPoint, Destination endPoint)
         {
             if ((startPoint == Destination.Prague || startPoint == Destination.Brno) && (endPoint == Destination.Prague || endPoint == Destination.Brno))
             {
                 return 200;
             }
-            else if((startPoint == Destination.Brno || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Brno))
+            else if ((startPoint == Destination.Brno || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Brno))
             {
                 return 170;
             }
-            else if((startPoint == Destination.Prague || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Prague))
+            else if ((startPoint == Destination.Prague || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Prague))
             {
                 return 370;
             }
             return 0;
+        }
+
+        public override string ToString()
+        {
+            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} | Distance: {Distance}\n";
         }
     }
 }
