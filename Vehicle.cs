@@ -12,7 +12,6 @@ namespace WPF_Vehicle_Simulator
         public static int IDVehiclesCounter = 1;
     }
 
-    public enum TypeOfRoute { Default, Bridge, Tunnel }
     public enum Destination
     {
         Prague,
@@ -21,18 +20,10 @@ namespace WPF_Vehicle_Simulator
     }
     public class Vehicle
     {
-        public double Distance { get; set; }
         public int ID { get; set; }
-        public double Speed { get; set; }
-
-        private TypeOfRoute route;
-        public TypeOfRoute CurrentRoute
-        {
-            get { return route; }
-            set { route = value; }
-            //set -> CurrentRoute = TypeOfRoute.Normal;
-            //get -> TypeOfRoute theRoute = CurrentRoute;
-        }
+        public double Distance { get; set; }
+        public double[] Route { get; set; } // [Vzdálenost normální cesty dohromady, vzdálenost všech mostů dohromady, vzdálenost všech tunelů dohromady]
+        public double Time { get; set; }
 
         public Destination StartPoint { get; set; }
         public Destination EndPoint { get; set; }
@@ -40,33 +31,46 @@ namespace WPF_Vehicle_Simulator
         public Vehicle(Destination startPoint, Destination endPoint)
         {
             ID = AllID.IDVehiclesCounter;
-            Speed = 0.0;
-            route = TypeOfRoute.Default;
             StartPoint = startPoint;
             EndPoint = endPoint;
             Distance = GetDistance(StartPoint, EndPoint);
+            Route = GetRoute(Distance);
+            Time = GetTime(Route);
             AllID.IDVehiclesCounter++;
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
             if ((startPoint == Destination.Prague || startPoint == Destination.Brno) && (endPoint == Destination.Prague || endPoint == Destination.Brno))
             {
-                return 200;
+                return 200000;
             }
             else if ((startPoint == Destination.Brno || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Brno))
             {
-                return 170;
+                return 170000;
             }
             else if ((startPoint == Destination.Prague || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Prague))
             {
-                return 370;
+                return 370000;
             }
             return 0;
         }
+        public double[] GetRoute(double distance) // Vrátí pole o třech doublech --> {Délka normální cesty, délka všech mostů, délka všech tunelů dohromady}
+        {
+            return new double[]{160000, 20000, 20000 }; // 160 000m -> normální rychlost, 20 000 -> pomalejší rychlost, 20 000m -> nejpomalejší rychlost
+        }
+
+        public double GetTime(double[] route)
+        {
+            int normalSpeed = 130000; //m za h
+            int bridgeSpeed = 80000;
+            int tunnelSpeed = 50000;
+
+            return route[0] / normalSpeed + route[1] / bridgeSpeed + route[2] / tunnelSpeed; 
+        }// vypočítá za jak dlouhou dobu auto dojede do cíle přes všechny mostu a tunely (zatím bez meteo stanice)
 
         public override string ToString()
         {
-            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} | Distance: {Distance}\n";
+            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} | Distance: {Distance}m\n | Time: {Time}h";
         }
     }
 }
