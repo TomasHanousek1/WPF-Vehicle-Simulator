@@ -37,6 +37,7 @@ namespace WPF_Vehicle_Simulator
             Route = GetRoute(Distance);
             Time = GetTime(Route);
             AllID.IDVehiclesCounter++;
+            WeatherList w = new WeatherList(Distance);
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {

@@ -21,7 +21,7 @@ namespace WPF_Vehicle_Simulator
         public WeatherList(double distance)
         {
             Distance = distance;
-            NumWeathers = rn.Next(1, 5);
+            NumWeathers = rn.Next(2, 10);
             GetWeatherOnRode();
         }
         public void GetWeatherOnRode()
@@ -82,18 +82,15 @@ namespace WPF_Vehicle_Simulator
         public Weather()
         {
             MyWeather = (WeatherType)(rn.Next(0, 2));
-            double s = SpeedRatio;
-           
-            
+            SpeedRatio = speedRatio;            
         }
         public enum WeatherType { Default, Rain, Freez }    
         WeatherType MyWeather { get; set; }
         public double Temperature { get; set; }
         
-        public double GetTemperature(WeatherType weather)
+        public double SetTemperature(WeatherType weather)
         {
             return Temperature;
-        }
-        
+        }        
     }
 }
