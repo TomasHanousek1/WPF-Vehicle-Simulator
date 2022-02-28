@@ -22,6 +22,7 @@ namespace WPF_Vehicle_Simulator
         public VehiclesPage()
         {
             InitializeComponent();
+
         }
 
         private void btnCheckVehicles_Click(object sender, RoutedEventArgs e)

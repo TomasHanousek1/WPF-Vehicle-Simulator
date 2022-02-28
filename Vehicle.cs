@@ -52,4 +52,34 @@ namespace WPF_Vehicle_Simulator
             return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} \n";
         }
     }
+
+    public class Road
+    {
+        public double Distance { get; set; }
+        public Destination StartPoint { get; set; }
+        public Destination EndPoint { get; set; }
+        public Road(Vehicle vehicle)
+        {
+            StartPoint = vehicle.StartPoint;
+            EndPoint = vehicle.EndPoint;
+            Distance = GetDistance(StartPoint, EndPoint);
+        }
+
+    public double GetDistance(Destination startPoint, Destination endPoint)
+        {
+            if ((startPoint == Destination.Prague || startPoint == Destination.Brno) && (endPoint == Destination.Prague || endPoint == Destination.Brno))
+            {
+                return 200;
+            }
+            else if((startPoint == Destination.Brno || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Brno))
+            {
+                return 170;
+            }
+            else if((startPoint == Destination.Prague || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Prague))
+            {
+                return 370;
+            }
+            return 0;
+        }
+    }
 }
