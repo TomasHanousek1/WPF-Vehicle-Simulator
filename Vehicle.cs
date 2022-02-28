@@ -18,26 +18,14 @@ namespace WPF_Vehicle_Simulator
         Brno,
         Ostrava
     }
-    public class Vehicle
+
+    public class Ride
     {
-        public int ID { get; set; }
         public double Distance { get; set; }
-        public double[] Route { get; set; } // [Vzdálenost normální cesty dohromady, vzdálenost všech mostů dohromady, vzdálenost všech tunelů dohromady]
-        public double Time { get; set; }
-
-        public Destination StartPoint { get; set; }
-        public Destination EndPoint { get; set; }
-
-        public Vehicle(Destination startPoint, Destination endPoint)
+        public Ride(Destination startPoint, Destination endPoint)
         {
-            ID = AllID.IDVehiclesCounter;
-            StartPoint = startPoint;
-            EndPoint = endPoint;
-            Distance = GetDistance(StartPoint, EndPoint);
-            Route = GetRoute(Distance);
-            Time = GetTime(Route);
-            AllID.IDVehiclesCounter++;
-            WeatherList w = new WeatherList(Distance);
+            Distance = GetDistance(startPoint, endPoint);
+            Rode rode = new Rode();
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
@@ -55,23 +43,43 @@ namespace WPF_Vehicle_Simulator
             }
             return 0;
         }
-        public double[] GetRoute(double distance) // Vrátí pole o třech doublech --> {Délka normální cesty, délka všech mostů, délka všech tunelů dohromady}
+
+    }
+    public class Vehicle
+    {
+        public int ID { get; set; }
+        public double[] Route { get; set; } // [Vzdálenost normální cesty dohromady, vzdálenost všech mostů dohromady, vzdálenost všech tunelů dohromady]
+        public double Time { get; set; }
+
+        public Destination StartPoint { get; set; }
+        public Destination EndPoint { get; set; }
+
+        public Vehicle(Destination startPoint, Destination endPoint)
+        {
+            ID = AllID.IDVehiclesCounter;
+            AllID.IDVehiclesCounter++;
+            StartPoint = startPoint;
+            EndPoint = endPoint;
+            Ride ride = new Ride(startPoint, endPoint);
+        }
+       
+        /*public double[] GetRoute(double distance) // Vrátí pole o třech doublech --> {Délka normální cesty, délka všech mostů, délka všech tunelů dohromady}
         {
             return new double[]{160000, 20000, 20000 }; // 160 000m -> normální rychlost, 20 000 -> pomalejší rychlost, 20 000m -> nejpomalejší rychlost
-        }
+        }*/
 
-        public double GetTime(double[] route)
+        /*public double GetTime(double[] route)
         {
             int normalSpeed = 130000; //m za h
             int bridgeSpeed = 80000;
             int tunnelSpeed = 50000;
 
             return route[0] / normalSpeed + route[1] / bridgeSpeed + route[2] / tunnelSpeed; 
-        }// vypočítá za jak dlouhou dobu auto dojede do cíle přes všechny mostu a tunely (zatím bez meteo stanice)
+        }// vypočítá za jak dlouhou dobu auto dojede do cíle přes všechny mostu a tunely (zatím bez meteo stanice)*/
 
         public override string ToString()
         {
-            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} | Distance: {Distance}m\n | Time: {Time}h";
+            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} \n";
         }
     }
 }

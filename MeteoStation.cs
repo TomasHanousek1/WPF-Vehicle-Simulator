@@ -28,7 +28,7 @@ namespace WPF_Vehicle_Simulator
             double startdistance = 0;
             for (int i = 0; i < NumWeathers; i++)
             {
-                WeatherBlock weather = new WeatherBlock(startdistance, Distance, Weather.WeatherType.Default); //weather previus type
+                WeatherBlock weather = new WeatherBlock(startdistance, Distance); //weather previus type
                 WeatherCollection.Add(weather);
                 startdistance = weather.end;
             }
@@ -38,10 +38,10 @@ namespace WPF_Vehicle_Simulator
     {
         Random rn = new Random();
         public double range, start, end;
-        public Weather MyWeather { get; set; }
-        public WeatherBlock(double startDistance,double endDistance, Weather.WeatherType previusType)
+        public Weather WBWeather { get; set; }
+        public WeatherBlock(double startDistance,double endDistance)
         {
-            MyWeather = new Weather();
+            WBWeather = new Weather();
             SetRange(startDistance, endDistance);
             start = startDistance;
             end = startDistance + range;
@@ -84,7 +84,7 @@ namespace WPF_Vehicle_Simulator
             SpeedRatio = speedRatio;            
         }
         public enum WeatherType { Default, Rain, Freez }    
-        WeatherType MyWeather { get; set; }
+        public WeatherType MyWeather { get; set; }
         public double Temperature { get; set; }
         
         public double SetTemperature(WeatherType weather)
