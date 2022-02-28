@@ -25,19 +25,5 @@ namespace WPF_Vehicle_Simulator
         }
     }
 
-    public interface Location
-    {
-        double LocationX { get; set; }
-        double LocationY { get; set; }
-    }
-
-    public class Weather : Location
-    {
-        public enum WeatherType {Default, Rain, Freez}
-        public double LocationX { get; set; }
-        public double LocationY { get; set; }
-        public double RangeX { get; set; }
-        public double RangeY { get; set; }
-
-    }
+    
 }

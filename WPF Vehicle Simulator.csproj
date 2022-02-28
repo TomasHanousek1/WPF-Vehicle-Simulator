@@ -55,6 +55,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="MeteoStation.cs" />
     <Compile Include="Vehicle.cs" />
     <Compile Include="VehiclesPage.xaml.cs">
       <DependentUpon>VehiclesPage.xaml</DependentUpon>
