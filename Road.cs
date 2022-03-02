@@ -8,9 +8,10 @@ namespace WPF_Vehicle_Simulator
         public List<double> TunnelsList = new List<double>();
         public List<double> BridgesList = new List<double>();
 
+        public WeatherList myWeather;
         public Road(double distance)
         {
-            WeatherList myWeather = new WeatherList(distance);
+            myWeather = new WeatherList(distance);
             Service service = new Service();
             GetTunnels(distance);
             GetBridges(distance);

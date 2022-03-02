@@ -16,22 +16,38 @@ namespace WPF_Vehicle_Simulator
         public List<WeatherBlock> WeatherCollection = new List<WeatherBlock>();
         public double Distance { get; set; }
         Random rn = new Random();
-        public int NumWeathers;
         public WeatherList(double distance)
         {
             Distance = distance;
-            NumWeathers = rn.Next(2, 10);
+
             GetWeatherOnRode();
         }
         public void GetWeatherOnRode()
         {
+            int numWeathers = rn.Next(5, 12);
             double startdistance = 0;
-            for (int i = 0; i < NumWeathers; i++)
+            for (int i = 0; i < numWeathers; numWeathers--)
             {
-                WeatherBlock weather = new WeatherBlock(startdistance, Distance); //weather previus type
-                WeatherCollection.Add(weather);
-                startdistance = weather.end;
+                if (numWeathers == 1)
+                {
+                    WeatherBlock weather = new WeatherBlock(startdistance, Distance, numWeathers); //weather previus type
+                    WeatherCollection.Add(weather);
+                }
+                else
+                {
+                    WeatherBlock weather = new WeatherBlock(startdistance, Coe(startdistance, numWeathers), numWeathers); //weather previus type
+                    WeatherCollection.Add(weather);
+                    startdistance = weather.end;
+                }
             }
+        }
+
+        private double Coe(double startdistance, int numWeathers)
+        {
+            double locDis = Distance - startdistance;
+            double Coee = rn.Next((int)(locDis / numWeathers / 2), (int)(locDis / numWeathers * 2));
+
+            return Coee;
         }
     }
     public class WeatherBlock
@@ -39,57 +55,70 @@ namespace WPF_Vehicle_Simulator
         Random rn = new Random();
         public double range, start, end;
         public Weather WBWeather { get; set; }
-        public WeatherBlock(double startDistance,double endDistance)
+        public WeatherBlock(double startDistance,double endDistance, int weatherNum)
         {
             WBWeather = new Weather();
-            SetRange(startDistance, endDistance);
+            if (weatherNum == 1)
+            {
+                range = (endDistance - startDistance);
+            }
+            else
+            {
+                SetRange(startDistance, endDistance);
+            }
             start = startDistance;
             end = startDistance + range;
         }
       
-        private double SetRange(double mystart, double maxend)
+        private double SetRange(double mystart, double maxend) // getting range of WeatherBlock
         {
-            int accuracy = 10000;
-            range = rn.Next(1, accuracy) * (maxend - mystart) / accuracy;
-
+            //int accuracy = 10000;
+            //range = rn.Next(1, accuracy) * (maxend - mystart) / accuracy;
+            range = maxend;
             return range;
         }
     }
     public class Weather
     {
+        public enum WeatherType { Default, Sunny, Rainy, Freeze, Snowfall } // type of weather
         Random rn = new Random();
-        private double speedRatio;
-        double SpeedRatio
-        {
-            get => speedRatio;
-            set
-            {
-                if (MyWeather == WeatherType.Default)
-                {
-                    speedRatio = 1;
-                }
-                else if (MyWeather == WeatherType.Freez)
-                {
-                    speedRatio = 0.7;
-                }
-                else if (MyWeather == WeatherType.Rain)
-                {
-                    speedRatio = 0.8;
-                }
-            }
-        }
         public Weather()
         {
-            MyWeather = (WeatherType)(rn.Next(0, 2));
-            SpeedRatio = speedRatio;            
-        }
-        public enum WeatherType { Default, Rain, Freez }    
+            MyWeather = (WeatherType)(rn.Next(0, 4)); // random weather
+            SetAttributes(MyWeather);
+        }    
         public WeatherType MyWeather { get; set; }
         public double Temperature { get; set; }
-        
-        public double SetTemperature(WeatherType weather)
+        public double SpeedRatio { get; set; }
+
+        private void SetAttributes(WeatherType weather) // get all attributes of weather
         {
-            return Temperature;
-        }        
+            switch (weather)
+            {
+                case WeatherType.Default:
+                    Temperature = 20;
+                    SpeedRatio = 1;
+                    break;
+                case WeatherType.Sunny:
+                    Temperature = 27;
+                    SpeedRatio = 1;
+                    break;
+                case WeatherType.Rainy:
+                    Temperature = 17;
+                    SpeedRatio = 0.9;
+                    break;
+                case WeatherType.Freeze:
+                    Temperature = -4;
+                    SpeedRatio = 0.5;
+                    break;
+                case WeatherType.Snowfall:
+                    Temperature = -1;
+                    SpeedRatio = 0.65;
+                    break;
+                default:
+                    break;
+            }
+        }
+        
     }
 }

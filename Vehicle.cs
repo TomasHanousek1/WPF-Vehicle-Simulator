@@ -23,11 +23,11 @@ namespace WPF_Vehicle_Simulator
     public class Ride
     {
         public double Distance { get; set; }
+        public Road road;
         public Ride(Destination startPoint, Destination endPoint)
         {
             Distance = GetDistance(startPoint, endPoint);
-            Rode rode = new Rode();
-            Road road = new Road(Distance);
+            road = new Road(Distance);           
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
