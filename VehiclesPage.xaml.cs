@@ -14,9 +14,6 @@ using System.Windows.Shapes;
 
 namespace WPF_Vehicle_Simulator
 {
-    /// <summary>
-    /// Interakční logika pro VehiclesPage.xaml
-    /// </summary>
     public partial class VehiclesPage : Window
     {
         public VehiclesPage()

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows;
 
 namespace WPF_Vehicle_Simulator
 {
@@ -26,12 +27,13 @@ namespace WPF_Vehicle_Simulator
         {
             Distance = GetDistance(startPoint, endPoint);
             Rode rode = new Rode();
+            Road road = new Road(Distance);
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
             if ((startPoint == Destination.Prague || startPoint == Destination.Brno) && (endPoint == Destination.Prague || endPoint == Destination.Brno))
             {
-                return 200000;
+                return 200000; // Distance in meters
             }
             else if ((startPoint == Destination.Brno || startPoint == Destination.Ostrava) && (endPoint == Destination.Ostrava || endPoint == Destination.Brno))
             {
@@ -48,7 +50,6 @@ namespace WPF_Vehicle_Simulator
     public class Vehicle
     {
         public int ID { get; set; }
-        public double[] Route { get; set; } // [Vzdálenost normální cesty dohromady, vzdálenost všech mostů dohromady, vzdálenost všech tunelů dohromady]
         public double Time { get; set; }
 
         public Destination StartPoint { get; set; }
