@@ -55,13 +55,14 @@ namespace WPF_Vehicle_Simulator
         public Destination StartPoint { get; set; }
         public Destination EndPoint { get; set; }
 
+        public Ride ride;
         public Vehicle(Destination startPoint, Destination endPoint)
         {
             ID = AllID.IDVehiclesCounter;
             AllID.IDVehiclesCounter++;
             StartPoint = startPoint;
             EndPoint = endPoint;
-            Ride ride = new Ride(startPoint, endPoint);
+            ride = new Ride(startPoint, endPoint);
         }
        
         /*public double[] GetRoute(double distance) // Vrátí pole o třech doublech --> {Délka normální cesty, délka všech mostů, délka všech tunelů dohromady}

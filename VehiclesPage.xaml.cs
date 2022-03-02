@@ -69,5 +69,14 @@ namespace WPF_Vehicle_Simulator
                 throw;
             }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)// just check for now
+        {
+            txtLog.Clear();
+            foreach (var item in VehicleCollection.Collection[Convert.ToInt32(idBox.Text)].ride.road.myWeather.WeatherCollection)
+            {
+                txtLog.Text += item.end.ToString(); 
+            }
+        }
     }
 }
