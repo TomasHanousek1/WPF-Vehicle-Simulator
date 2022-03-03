@@ -7,10 +7,6 @@ namespace WPF_Vehicle_Simulator
     {
 
     }
-    public class Rode
-    {
-
-    }
     public class WeatherList
     {
         public List<WeatherBlock> WeatherCollection = new List<WeatherBlock>();
