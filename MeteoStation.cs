@@ -10,17 +10,17 @@ namespace WPF_Vehicle_Simulator
     public class WeatherList
     {
         /// <summary>
-        /// List of WeatherBlocks in Rode
+        /// List of WeatherBlocks on the Road
         /// </summary>
         public List<WeatherBlock> WeatherCollection = new List<WeatherBlock>(); 
         private Random rn = new Random();
         public WeatherList(double distance)
         {
             Distance = distance;
-            GetWeather(); // Get weather on rode
+            GetWeather(); // Get weather on the rode
         }
-        public double Distance { get; set; } //distance of whole Rode
-        private void GetWeather() // Get weather on rode
+        public double Distance { get; set; } //distance of whole Road
+        private void GetWeather() // Get weather on road
         {
             int numWeathers = rn.Next(5, 12);
             double startdistance = 0; //start distance of current WeatherBlock
@@ -71,7 +71,7 @@ namespace WPF_Vehicle_Simulator
             s += $"Info about weather on rode \n";
             foreach (var item in WeatherCollection)
             {
-                s += $"Start: {item.start}m | End: {item.end}m | Range: {item.start}m | Weather: {item.WBWeather.MyWeather} | Range: {item.WBWeather.Temperature}°C \n";
+                s += $"Start: {item.start}m | End: {item.end}m | Range: {item.range}m | Weather: {item.WBWeather.MyWeather} | Range: {item.WBWeather.Temperature}°C \n";
             }
             return s;
         }
