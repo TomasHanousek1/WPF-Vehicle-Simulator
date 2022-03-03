@@ -64,20 +64,7 @@ namespace WPF_Vehicle_Simulator
             EndPoint = endPoint;
             ride = new Ride(startPoint, endPoint);
         }
-       
-        /*public double[] GetRoute(double distance) // Vrátí pole o třech doublech --> {Délka normální cesty, délka všech mostů, délka všech tunelů dohromady}
-        {
-            return new double[]{160000, 20000, 20000 }; // 160 000m -> normální rychlost, 20 000 -> pomalejší rychlost, 20 000m -> nejpomalejší rychlost
-        }*/
-
-        /*public double GetTime(double[] route)
-        {
-            int normalSpeed = 130000; //m za h
-            int bridgeSpeed = 80000;
-            int tunnelSpeed = 50000;
-
-            return route[0] / normalSpeed + route[1] / bridgeSpeed + route[2] / tunnelSpeed; 
-        }// vypočítá za jak dlouhou dobu auto dojede do cíle přes všechny mostu a tunely (zatím bez meteo stanice)*/
+              
 
         public override string ToString()
         {
