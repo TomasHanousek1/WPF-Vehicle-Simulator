@@ -1,5 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media.Animation;
 
 namespace WPF_Vehicle_Simulator
 {
@@ -27,7 +30,7 @@ namespace WPF_Vehicle_Simulator
         public Ride(Destination startPoint, Destination endPoint)
         {
             Distance = GetDistance(startPoint, endPoint);
-            road = new Road(Distance);           
+            road = new Road(Distance);
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
@@ -45,7 +48,6 @@ namespace WPF_Vehicle_Simulator
             }
             return 0;
         }
-
     }
     public class Vehicle
     {

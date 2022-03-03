@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -56,6 +57,7 @@ namespace WPF_Vehicle_Simulator
                 {
                     Vehicle vehicle = new Vehicle(startDestination, endDestination);
                     VehicleCollection.Collection.Add(vehicle);
+                    CreateProgressBar(200000);
                     MessageBox.Show("Vehicle created");
                 }
                 else
@@ -77,8 +79,21 @@ namespace WPF_Vehicle_Simulator
             int carID = Convert.ToInt32(idBox.Text);
             txtLog.Text += "Car with id #" + carID;
             txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();
+        }
 
+        public void CreateProgressBar(double distance)
+        {
+            double speed = 1000; // metry za sekundu
 
+            ProgressBar pb = new ProgressBar();
+            pb.IsIndeterminate = false;
+            pb.Orientation = Orientation.Horizontal;
+            pb.Width = 300;
+            pb.Height = 30;
+            Duration dur = new Duration(TimeSpan.FromSeconds(distance / speed));
+            DoubleAnimation ani = new DoubleAnimation(100.0, dur);
+            pb.BeginAnimation(ProgressBar.ValueProperty, ani);
+            sbar.Items.Add(pb);
         }
     }
 }
