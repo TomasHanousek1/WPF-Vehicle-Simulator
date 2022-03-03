@@ -9,56 +9,56 @@ namespace WPF_Vehicle_Simulator
     }
     public class WeatherList
     {
-        public List<WeatherBlock> WeatherCollection = new List<WeatherBlock>();
-        Random rn = new Random();
+        /// <summary>
+        /// List of WeatherBlocks in Rode
+        /// </summary>
+        public List<WeatherBlock> WeatherCollection = new List<WeatherBlock>(); 
+        private Random rn = new Random();
         public WeatherList(double distance)
         {
             Distance = distance;
-
-            GetWeather();
+            GetWeather(); // Get weather on rode
         }
-        public double Distance { get; set; }
-        private void GetWeather()
+        public double Distance { get; set; } //distance of whole Rode
+        private void GetWeather() // Get weather on rode
         {
             int numWeathers = rn.Next(5, 12);
-            double startdistance = 0;
-            int startNumW = 0;
-            for (int i = 0; i < numWeathers; numWeathers--)
+            double startdistance = 0; //start distance of current WeatherBlock
+            int startNumW = 0; //getting current number of WeatherBlock
+            for (int i = 0; i < numWeathers; numWeathers--, startNumW++)
             {
-                if (numWeathers == 1)
+                if (numWeathers == 1) //if its last WeatherBlock in Collection
                 {
                     WeatherBlock weather;
                     do
                     {
-                        weather = new WeatherBlock(startdistance, Distance, numWeathers); //weather previus type
-                    } while (WeatherCollection[startNumW - 1].WBWeather.MyWeather == weather.WBWeather.MyWeather);
-                    WeatherCollection.Add(weather);
+                        weather = new WeatherBlock(startdistance, Distance, numWeathers); 
+                    } while (WeatherCollection[startNumW - 1].WBWeather.MyWeather == weather.WBWeather.MyWeather); //do until previusBlock.WeatherType != nowBlock.WeatherType
+                    WeatherCollection.Add(weather); // add to collection
                 }
                 else
                 {
                     if (startdistance == 0)
                     {
-                        WeatherBlock weather = new WeatherBlock(startdistance, Coe(startdistance, numWeathers), numWeathers); //weather previus type
-                        WeatherCollection.Add(weather);
-                        startdistance = weather.end;
-                        startNumW++;
+                        WeatherBlock weather = new WeatherBlock(startdistance, Coe(startdistance, numWeathers), numWeathers);
+                        WeatherCollection.Add(weather); // add to collection
+                        startdistance = weather.end; //to get start of next WeatherBlock
                     }
                     else
                     {
                         WeatherBlock weather;
                         do
                         {
-                            weather = new WeatherBlock(startdistance, Coe(startdistance, numWeathers), numWeathers); //weather previus type
-                        } while (WeatherCollection[startNumW - 1].WBWeather.MyWeather == weather.WBWeather.MyWeather);
-                        WeatherCollection.Add(weather);
-                        startdistance = weather.end;
-                        startNumW++;
+                            weather = new WeatherBlock(startdistance, Coe(startdistance, numWeathers), numWeathers); 
+                        } while (WeatherCollection[startNumW - 1].WBWeather.MyWeather == weather.WBWeather.MyWeather); //do until previusBlock.WeatherType != nowBlock.WeatherType
+                        WeatherCollection.Add(weather); // add to collection
+                        startdistance = weather.end; //to get start of next WeatherBlock
                     }
                 }
             }
         }
 
-        private double Coe(double startdistance, int numWeathers)
+        private double Coe(double startdistance, int numWeathers) //getting end distance of next WeatherBlock
         {
             double locDis = Distance - startdistance;
             double Coee = rn.Next((int)(locDis / numWeathers / 2), (int)(locDis / numWeathers * 2));
@@ -66,46 +66,59 @@ namespace WPF_Vehicle_Simulator
             return Coee;
         }
     }
+
+    /// <summary>
+    /// Physical weather block
+    /// </summary>
     public class WeatherBlock
     {
-        //Random rn = new Random();
         public double range, start, end;
-        public WeatherBlock(double startDistance,double endDistance, int weatherNum)
+        public WeatherBlock(double startDistance,double endDistance, int weatherNum) 
         {
-            WBWeather = new Weather();
-            if (weatherNum == 1)
+            WBWeather = new Weather(); // get weather in WeatherBlock
+            if (weatherNum == 1)//if it is last WeatherBlock in WeatherBlockList
             {
-                range = (endDistance - startDistance);
+                range = (endDistance - startDistance); // range = remaining distance from whole Ride distance
             }
             else
             {
-                SetRange(startDistance, endDistance);
+                SetRange(endDistance);// set range of weatherblock
             }
-            start = startDistance;
-            end = startDistance + range;
+            start = startDistance; // set start of block
+            end = startDistance + range; //set end of block
         }
-        public Weather WBWeather { get; set; }
 
-        private double SetRange(double mystart, double maxend) // getting range of WeatherBlock
+        /// <summary>
+        /// Weather in WeatherBlock
+        /// </summary>
+        public Weather WBWeather { get; set; } 
+
+        private double SetRange(double end) // getting range of WeatherBlock
         {
             //int accuracy = 10000;
             //range = rn.Next(1, accuracy) * (maxend - mystart) / accuracy;
-            range = maxend;
-            return range;
+            return range = end;
         }
     }
+
+    /// <summary>
+    /// Physical block weather
+    /// </summary>
     public class Weather
     {
-        public enum WeatherType { Default, Sunny, Rainy, Freeze, Snowfall } // type of weather
+        /// <summary>
+        /// Type of weather
+        /// </summary>
+        public enum WeatherType { Default, Sunny, Rainy, Freeze, Snowfall }
         private Random rn = new Random();
         public Weather()
         {
-            MyWeather = (WeatherType)(rn.Next(0, 4)); // random weather
-            SetAttributes(MyWeather);
+            MyWeather = (WeatherType)(rn.Next(0, 4)); // get random weather
+            SetAttributes(MyWeather); // set attributes connecting to weather
         }    
-        public WeatherType MyWeather { get; set; }
-        public double Temperature { get; set; }
-        public double SpeedRatio { get; set; }
+        public WeatherType MyWeather { get; set; }// WeatherType
+        public double Temperature { get; set; }//Temperature
+        public double SpeedRatio { get; set; } //speedRatio
 
         private void SetAttributes(WeatherType weather) // get all attributes of weather
         {
