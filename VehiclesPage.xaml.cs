@@ -73,10 +73,12 @@ namespace WPF_Vehicle_Simulator
         private void Button_Click(object sender, RoutedEventArgs e)// just check for now
         {
             txtLog.Clear();
-            foreach (var item in VehicleCollection.Collection[Convert.ToInt32(idBox.Text)].ride.road.myWeather.WeatherCollection)
-            {
-                txtLog.Text += item.end.ToString(); 
-            }
+
+            int carID = Convert.ToInt32(idBox.Text);
+            txtLog.Text += "Car with id #" + carID;
+            txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();
+
+
         }
     }
 }

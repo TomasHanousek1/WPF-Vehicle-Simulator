@@ -65,6 +65,16 @@ namespace WPF_Vehicle_Simulator
 
             return Coee;
         }
+        public override string ToString()
+        {
+            string s = "";
+            s += $"Info about weather on rode \n";
+            foreach (var item in WeatherCollection)
+            {
+                s += $"Start: {item.start}m | End: {item.end}m | Range: {item.start}m | Weather: {item.WBWeather.MyWeather} | Range: {item.WBWeather.Temperature}°C \n";
+            }
+            return s;
+        }
     }
 
     /// <summary>

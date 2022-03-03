@@ -62,7 +62,7 @@
                      Margin="0, 0, 20, 0" Grid.Row="4"/>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
                     Click="Button_Click"
-                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="Delete"
+                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="GetInfoAboutCar"
                     FontSize="16" FontWeight="Bold"/>
         </Grid>
     </Grid>

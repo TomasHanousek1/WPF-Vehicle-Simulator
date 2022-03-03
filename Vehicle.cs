@@ -63,9 +63,7 @@ namespace WPF_Vehicle_Simulator
             StartPoint = startPoint;
             EndPoint = endPoint;
             ride = new Ride(startPoint, endPoint);
-        }
-              
-
+        }             
         public override string ToString()
         {
             return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} \n";
