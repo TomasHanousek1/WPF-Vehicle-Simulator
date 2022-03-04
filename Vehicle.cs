@@ -41,8 +41,9 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Vehicle #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} \n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} \n";
         }
+
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
             if ((startPoint == Destination.Prague || startPoint == Destination.Brno) && (endPoint == Destination.Prague || endPoint == Destination.Brno))
@@ -73,7 +74,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Vehicle #{ID} \n";
+            return $"Vehicle #{ID} | Lights: {Lights} \n";
         }
     }
 }
