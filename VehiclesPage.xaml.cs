@@ -55,6 +55,7 @@ namespace WPF_Vehicle_Simulator
             {
                 if (startDestination != endDestination)
                 {
+                    txtLog.Clear();
                     int carID = Convert.ToInt32(idBox.Text) - 1;
                     Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[carID]);
                     VehicleCollection.Collection[carID].ride.Add(ride); // add to list in vehicles

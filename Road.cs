@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
+using System;
 using System.Windows;
 
 namespace WPF_Vehicle_Simulator
 {
     public class Road
     {
-        public List<double> TunnelsList = new List<double>();
+        public List<Tunnel> TunnelsList = new List<Tunnel>();
         public List<double> BridgesList = new List<double>();
 
         public WeatherList myWeather;
@@ -17,9 +18,9 @@ namespace WPF_Vehicle_Simulator
             GetBridges(distance);
         }
 
-        public void GetTunnels(double distance)
+        /*public void GetTunnels(double distance)
         { 
-            if (distance == 200000) // On the road from Prague to Brno there are 2 tunnels 
+           if (distance == 200000) // On the road from Prague to Brno there are 2 tunnels 
             {
                 // 1. tunnel - 6000m long
                 TunnelsList.Add(4000); // Start of tunnel
@@ -44,6 +45,21 @@ namespace WPF_Vehicle_Simulator
                 TunnelsList.Add(200000);
                 TunnelsList.Add(202000);
             }
+        }*/
+        private Random rn = new Random();
+        private void GetTunnels(double distance)
+        {
+            int numTunnels = rn.Next(1, Convert.ToInt32(distance / 75000)); // max 1 tunnel on every 75Km
+            double startDistance = 0; //start distance of current WeatherBlock
+            double endDistance = 0;
+            int startNumW = 0; //getting current number of WeatherBlock
+            for (int i = 0; i < numTunnels; numTunnels--, startNumW++)
+            {
+                startDistance = rn.Next((int)endDistance + (int)(distance/100), (int)distance / numTunnels);
+                endDistance = startDistance + rn.Next(2000, 8000);
+                Tunnel tunnel = new Tunnel(startDistance, endDistance);
+                TunnelsList.Add(tunnel);
+            }
         }
         
         public void GetBridges(double distance)
@@ -60,6 +76,18 @@ namespace WPF_Vehicle_Simulator
                 BridgesList.Add(150000);
                 BridgesList.Add(152000);
             }
+        }
+    }
+    public class Tunnel
+    {
+        public double speedRatio = 0.7;
+        public double Start, Range, End;
+
+        public Tunnel(double start, double end)
+        {
+            Start = start;
+            Range = end - start;
+            End = end;
         }
     }
 }
