@@ -27,10 +27,21 @@ namespace WPF_Vehicle_Simulator
     {
         public double Distance { get; set; }
         public Road road;
-        public Ride(Destination startPoint, Destination endPoint)
+        public Vehicle vehicle;
+
+        public Destination StartPoint { get; set; }
+        public Destination EndPoint { get; set; }
+        public Ride(Destination startPoint, Destination endPoint, Vehicle vehicle1)
         {
+            vehicle = vehicle1;
+            StartPoint = startPoint;
+            EndPoint = endPoint;
             Distance = GetDistance(startPoint, endPoint);
             road = new Road(Distance);
+        }
+        public override string ToString()
+        {
+            return $"Vehicle #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} \n";
         }
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
@@ -51,24 +62,16 @@ namespace WPF_Vehicle_Simulator
     }
     public class Vehicle
     {
+        public List<Ride> ride = new List<Ride>();
         public int ID { get; set; }
-        public double Time { get; set; }
-
-        public Destination StartPoint { get; set; }
-        public Destination EndPoint { get; set; }
-
-        public Ride ride;
-        public Vehicle(Destination startPoint, Destination endPoint)
+        public Vehicle()
         {
             ID = AllID.IDVehiclesCounter;
             AllID.IDVehiclesCounter++;
-            StartPoint = startPoint;
-            EndPoint = endPoint;
-            ride = new Ride(startPoint, endPoint);
-        }             
+        }
         public override string ToString()
         {
-            return $"Vehicle #{ID} | Start: {StartPoint} | End: {EndPoint} \n";
+            return $"Vehicle #{ID} \n";
         }
     }
 }

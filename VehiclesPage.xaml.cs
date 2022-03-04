@@ -32,7 +32,7 @@ namespace WPF_Vehicle_Simulator
             }
         }
 
-        private void btnCreateVehicle_Click(object sender, RoutedEventArgs e)
+        private void btnCreateRide_Click(object sender, RoutedEventArgs e)
         {
             Destination startDestination = Destination.Prague; // Defaultně z Prahy do Brna
             Destination endDestination = Destination.Brno;
@@ -55,10 +55,15 @@ namespace WPF_Vehicle_Simulator
             {
                 if (startDestination != endDestination)
                 {
-                    Vehicle vehicle = new Vehicle(startDestination, endDestination);
-                    VehicleCollection.Collection.Add(vehicle);
+                    int carID = Convert.ToInt32(idBox.Text) - 1;
+                    Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[carID]);
+                    VehicleCollection.Collection[carID].ride.Add(ride);
+                    foreach (var item in VehicleCollection.Collection[carID].ride)
+                    {
+                        txtLog.Text += item.road.myWeather.ToString();
+                    }
                     CreateProgressBar(200000);
-                    MessageBox.Show("Vehicle created");
+                    MessageBox.Show("Ride created");
                 }
                 else
                 {
@@ -74,11 +79,13 @@ namespace WPF_Vehicle_Simulator
 
         private void Button_Click(object sender, RoutedEventArgs e)// just check for now
         {
-            txtLog.Clear();
+            Vehicle vehicle = new Vehicle();
+            VehicleCollection.Collection.Add(vehicle);
+            /*txtLog.Clear();
 
             int carID = Convert.ToInt32(idBox.Text);
             txtLog.Text += "Car with id #" + carID;
-            txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();
+            //txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();*/
         }
 
         public void CreateProgressBar(double distance)

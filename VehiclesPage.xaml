@@ -52,17 +52,17 @@
                 <ComboBoxItem Name="endOstrava">Ostrava</ComboBoxItem>
             </ComboBox>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="2" Height="30" Content="Create"
-                    FontSize="16" FontWeight="Bold" x:Name="btnCreateVehicle" Click="btnCreateVehicle_Click"/>
+                     Margin="0,26,20.4,0" Grid.Row="2" Height="30" Content="Create ride"
+                    FontSize="16" FontWeight="Bold" x:Name="btnCreateRide" Click="btnCreateRide_Click"/>
 
-            <TextBlock Text="ID" VerticalAlignment="Center" Margin="40, 0, 0, 0" FontWeight="Bold"
-                       Grid.Row="4"/>
+            <TextBlock Text="ID of car" VerticalAlignment="Bottom" Margin="10,0,30.4,35" FontWeight="Bold"
+                       Grid.Row="2"/>
             <TextBox x:Name="idBox"
                 Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="4"/>
+                     Margin="0,3,20.4,35" Grid.Row="2"/>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
                     Click="Button_Click"
-                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="GetInfoAboutCar"
+                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="CreateCar"
                     FontSize="16" FontWeight="Bold"/>
         </Grid>
         <StatusBar Name="sbar" HorizontalAlignment="Left" Height="100" Margin="5,230,0,0" VerticalAlignment="Top" Width="551"/>
