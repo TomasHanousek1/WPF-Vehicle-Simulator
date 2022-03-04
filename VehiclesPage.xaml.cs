@@ -57,7 +57,7 @@ namespace WPF_Vehicle_Simulator
                 {
                     int carID = Convert.ToInt32(idBox.Text) - 1;
                     Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[carID]);
-                    VehicleCollection.Collection[carID].ride.Add(ride);
+                    VehicleCollection.Collection[carID].ride.Add(ride); // add to list in vehicles
                     foreach (var item in VehicleCollection.Collection[carID].ride)
                     {
                         txtLog.Text += item.road.myWeather.ToString();

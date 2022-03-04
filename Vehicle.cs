@@ -64,10 +64,12 @@ namespace WPF_Vehicle_Simulator
     {
         public List<Ride> ride = new List<Ride>();
         public int ID { get; set; }
+        public bool Lights { get; set; }
         public Vehicle()
         {
             ID = AllID.IDVehiclesCounter;
             AllID.IDVehiclesCounter++;
+            Lights = false;
         }
         public override string ToString()
         {
