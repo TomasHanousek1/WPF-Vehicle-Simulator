@@ -119,7 +119,7 @@ namespace WPF_Vehicle_Simulator
         /// <summary>
         /// Type of weather
         /// </summary>
-        public enum WeatherType { Default, Sunny, Rainy, Freeze, Snowfall }
+        public enum WeatherType { Sunny, Default, Rainy, Freeze, Snowfall }
         private Random rn = new Random();
         public Weather()
         {
@@ -135,23 +135,23 @@ namespace WPF_Vehicle_Simulator
             switch (weather)
             {
                 case WeatherType.Default:
-                    Temperature = 20;
+                    Temperature = rn.Next(15, 22);
                     SpeedRatio = 1;
                     break;
                 case WeatherType.Sunny:
-                    Temperature = 27;
+                    Temperature = rn.Next(20, 35);
                     SpeedRatio = 1;
                     break;
                 case WeatherType.Rainy:
-                    Temperature = 17;
+                    Temperature = rn.Next(0, 23);
                     SpeedRatio = 0.9;
                     break;
                 case WeatherType.Freeze:
-                    Temperature = -4;
+                    Temperature = rn.Next(-10, -1);
                     SpeedRatio = 0.5;
                     break;
                 case WeatherType.Snowfall:
-                    Temperature = -1;
+                    Temperature = rn.Next(-10, -2);
                     SpeedRatio = 0.65;
                     break;
                 default:
