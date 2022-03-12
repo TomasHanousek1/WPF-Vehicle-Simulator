@@ -94,6 +94,7 @@ namespace WPF_Vehicle_Simulator
         public void CreateProgressBar(double time)
         {
             ProgressBar pb = new ProgressBar();
+            VehicleCollection.BarCollection.Add(pb);
             pb.IsIndeterminate = false;
             pb.Orientation = Orientation.Horizontal;
             pb.Width = 300;
@@ -115,6 +116,7 @@ namespace WPF_Vehicle_Simulator
                 txtLog.Text += item.ToString();
                 txtLog.Text += item.road.myWeather.ToString();
             }
+            sbar.Items.Add(VehicleCollection.BarCollection[carID]);
         }
     }
 }

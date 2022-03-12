@@ -10,6 +10,7 @@ namespace WPF_Vehicle_Simulator
     static public class VehicleCollection
     {
         static public List<Vehicle> Collection = new List<Vehicle>();
+        static public List<ProgressBar> BarCollection = new List<ProgressBar>();
     }
 
     public static class AllID
