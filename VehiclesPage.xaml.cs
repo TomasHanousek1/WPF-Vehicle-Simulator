@@ -57,15 +57,25 @@ namespace WPF_Vehicle_Simulator
                 {
                     txtLog.Clear();
                     int carID = Convert.ToInt32(idBox.Text) - 1;
-                    Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[carID]);
-                    VehicleCollection.Collection[carID].ride.Add(ride); // add to list in vehicles
-                    foreach (var item in VehicleCollection.Collection[carID].ride)
+                    try
                     {
-                        txtLog.Text += item.ToString();
-                        txtLog.Text += item.road.myWeather.ToString();
+                        if (VehicleCollection.Collection[carID].ride[carID].Distance != 0)
+                        {
+                            MessageBox.Show("This vehicle already has a ride");
+                        }
                     }
-                    CreateProgressBar(ride.Time);
-                    MessageBox.Show("Ride created");
+                    catch (Exception)
+                    {
+                        Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[carID]);
+                        VehicleCollection.Collection[carID].ride.Add(ride); // add to list in vehicles
+                        foreach (var item in VehicleCollection.Collection[carID].ride)
+                        {
+                            txtLog.Text += item.ToString();
+                            txtLog.Text += item.road.myWeather.ToString();
+                        }
+                        CreateProgressBar(ride.Time);
+                        MessageBox.Show("Ride created");    
+                    }
                 }
                 else
                 {
