@@ -26,6 +26,7 @@ namespace WPF_Vehicle_Simulator
     public class Ride
     {
         public double Distance { get; set; }
+        public double Time { get; set; }
         public Road road;
         public Vehicle vehicle;
 
@@ -38,10 +39,25 @@ namespace WPF_Vehicle_Simulator
             EndPoint = endPoint;
             Distance = GetDistance(startPoint, endPoint);
             road = new Road(Distance);
+            Time = GetTime(road);
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} \n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Time}\n";
+        }
+
+        public double GetTime(Road road)
+        {
+            double time = 0;
+            foreach (var item in road.myWeather.WeatherCollection)
+            {
+                double range = item.range;
+                double speed = 110000; // Default speed is 110 km/h
+                double speedRatio = item.WBWeather.SpeedRatio;
+
+                time += range / (speed * speedRatio);
+            }
+            return time;
         }
 
         public double GetDistance(Destination startPoint, Destination endPoint)

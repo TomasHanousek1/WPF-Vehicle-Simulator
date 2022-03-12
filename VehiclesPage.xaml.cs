@@ -82,6 +82,7 @@ namespace WPF_Vehicle_Simulator
         {
             Vehicle vehicle = new Vehicle();
             VehicleCollection.Collection.Add(vehicle);
+            MessageBox.Show("Vehicle created");
             /*txtLog.Clear();
 
             int carID = Convert.ToInt32(idBox.Text);

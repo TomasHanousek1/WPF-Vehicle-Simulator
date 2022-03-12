@@ -18,34 +18,6 @@ namespace WPF_Vehicle_Simulator
             GetBridges(distance);
         }
 
-        /*public void GetTunnels(double distance)
-        { 
-           if (distance == 200000) // On the road from Prague to Brno there are 2 tunnels 
-            {
-                // 1. tunnel - 6000m long
-                TunnelsList.Add(4000); // Start of tunnel
-                TunnelsList.Add(10000); // End of tunnel
-                //2. tunnel - 5000m long
-                TunnelsList.Add(190000);
-                TunnelsList.Add(195000);
-            }
-            if(distance == 170000) // Brno to Ostrava - 1 tunnel
-            {
-                TunnelsList.Add(90000);
-                TunnelsList.Add(93000);
-            }
-            if(distance == 370000) // Prague to Ostrava - 3 tunnels
-            {
-                TunnelsList.Add(50000); 
-                TunnelsList.Add(53000); 
-
-                TunnelsList.Add(130000);
-                TunnelsList.Add(131000);
-
-                TunnelsList.Add(200000);
-                TunnelsList.Add(202000);
-            }
-        }*/
         private Random rn = new Random();
         private void GetTunnels(double distance)
         {
