@@ -43,28 +43,36 @@
             </ComboBox>
 
 
-            <TextBlock Text="End Point" VerticalAlignment="Center" Margin="6, 0, 0, 0" FontWeight="Bold"
+            <TextBlock Text="End Point" VerticalAlignment="Center" Margin="6,0,0,40" FontWeight="Bold"
                        Grid.Row="1"/>
             <ComboBox Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0, 0, 20, 0" Grid.Row="1" x:Name="comboBoxEnd">
+                     Margin="0,0,20,34" Grid.Row="1" x:Name="comboBoxEnd">
                 <ComboBoxItem Name="endPrague">Prague</ComboBoxItem>
                 <ComboBoxItem Name="endBrno">Brno</ComboBoxItem>
                 <ComboBoxItem Name="endOstrava">Ostrava</ComboBoxItem>
             </ComboBox>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
-                     Margin="0,26,20.4,0" Grid.Row="2" Height="30" Content="Create ride"
+                     Margin="0,0,20,0" Grid.Row="2" Height="30" Content="Create ride"
                     FontSize="16" FontWeight="Bold" x:Name="btnCreateRide" Click="btnCreateRide_Click"/>
 
-            <TextBlock Text="ID of car" VerticalAlignment="Bottom" Margin="10,0,30.4,35" FontWeight="Bold"
-                       Grid.Row="2"/>
+            <TextBlock Text="ID of car" VerticalAlignment="Bottom" Margin="10,0,30,13" FontWeight="Bold"
+                       Grid.Row="1"/>
             <TextBox x:Name="idBox"
                 Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
-                     Margin="0,3,20.4,35" Grid.Row="2"/>
+                     Margin="0,28,20,10" Grid.Row="1"/>
             <Button Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
                     Click="Button_Click"
-                     Margin="0, 0, 20, 0" Grid.Row="5" Height="30" Content="CreateCar"
+                     Margin="0,10,20,0" Grid.Row="3" Height="30" Content="Create Vehicle"
+                    FontSize="16" FontWeight="Bold"/>
+            <TextBlock Text="ID of car" VerticalAlignment="Bottom" Margin="10,0,30,10" FontWeight="Bold"
+                Grid.Row="4"/>
+            <TextBox x:Name="idBoxShow"
+                Width="140" VerticalAlignment="Center" HorizontalAlignment="Right"
+                Margin="0,28,20,10" Grid.Row="4"/>
+            <Button Name="btnShowVehicle" Width="140" VerticalAlignment="Top" HorizontalAlignment="Right"
+                    Margin="0,0,20,0" Grid.Row="5" Height="30" Content="Show Vehicle" Click="btnShowVehicle_Click"
                     FontSize="16" FontWeight="Bold"/>
         </Grid>
-        <StatusBar Name="sbar" HorizontalAlignment="Left" Height="100" Margin="5,230,0,0" VerticalAlignment="Top" Width="551"/>
+        <StatusBar Name="sbar" HorizontalAlignment="Left" Height="60" Margin="5,270,0,0" VerticalAlignment="Top" Width="551"/>
     </Grid>
 </Window>

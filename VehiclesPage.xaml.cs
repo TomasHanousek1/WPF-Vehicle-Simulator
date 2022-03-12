@@ -74,7 +74,7 @@ namespace WPF_Vehicle_Simulator
             }
             catch (Exception)
             {
-                throw;
+                MessageBox.Show("ID is not valid");
             }
         }
 
@@ -102,6 +102,17 @@ namespace WPF_Vehicle_Simulator
             DoubleAnimation ani = new DoubleAnimation(100.0, dur);
             pb.BeginAnimation(ProgressBar.ValueProperty, ani);
             sbar.Items.Add(pb);
+        }
+
+        private void btnShowVehicle_Click(object sender, RoutedEventArgs e)
+        {
+            txtLog.Clear();
+            sbar.Items.Clear();
+            int carID = Convert.ToInt32(idBoxShow.Text) - 1;
+            foreach (var item in VehicleCollection.Collection[carID].ride)
+            {
+                txtLog.Text += item.road.myWeather.ToString();
+            }
         }
     }
 }
