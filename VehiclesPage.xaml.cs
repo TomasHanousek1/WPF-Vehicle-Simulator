@@ -64,7 +64,7 @@ namespace WPF_Vehicle_Simulator
                         txtLog.Text += item.ToString();
                         txtLog.Text += item.road.myWeather.ToString();
                     }
-                    CreateProgressBar(200000);
+                    CreateProgressBar(ride.Time);
                     MessageBox.Show("Ride created");
                 }
                 else
@@ -91,16 +91,15 @@ namespace WPF_Vehicle_Simulator
             //txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();*/
         }
 
-        public void CreateProgressBar(double distance)
+        public void CreateProgressBar(double time)
         {
-            double speed = 1000; // metry za sekundu
-
             ProgressBar pb = new ProgressBar();
             pb.IsIndeterminate = false;
             pb.Orientation = Orientation.Horizontal;
             pb.Width = 300;
             pb.Height = 30;
-            Duration dur = new Duration(TimeSpan.FromSeconds(distance / speed));
+            double speedFaster = 1000; // Progressbar will load 1000* faster
+            Duration dur = new Duration(TimeSpan.FromHours(time / speedFaster));
             DoubleAnimation ani = new DoubleAnimation(100.0, dur);
             pb.BeginAnimation(ProgressBar.ValueProperty, ani);
             sbar.Items.Add(pb);
