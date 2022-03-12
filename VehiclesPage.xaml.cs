@@ -98,7 +98,7 @@ namespace WPF_Vehicle_Simulator
             pb.Orientation = Orientation.Horizontal;
             pb.Width = 300;
             pb.Height = 30;
-            double speedFaster = 1000; // Progressbar will load 1000* faster
+            double speedFaster = 10; // Progressbar will load 10* faster
             Duration dur = new Duration(TimeSpan.FromHours(time / speedFaster));
             DoubleAnimation ani = new DoubleAnimation(100.0, dur);
             pb.BeginAnimation(ProgressBar.ValueProperty, ani);
