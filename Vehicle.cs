@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
@@ -90,7 +91,19 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Vehicle #{ID} | Lights: {Lights} \n";
+            bool isRide = false; // False = vehicle doesnt have a ride, True = vehicle does have a ride
+            try
+            {
+                if (ride[ID - 1].Distance > 0)
+                    isRide = true;
+            }
+            catch (Exception)
+            {
+                isRide = false;
+            }
+
+            // bool onRide = ride[ID - 1].GetType().GetProperties().All(p => p.GetValue(ride[ID - 1]) != null);
+            return $"Vehicle #{ID} | Lights: {Lights} | Ride: {isRide}\n";
         }
     }
 }
