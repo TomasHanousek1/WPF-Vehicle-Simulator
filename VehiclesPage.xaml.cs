@@ -61,6 +61,7 @@ namespace WPF_Vehicle_Simulator
                     VehicleCollection.Collection[carID].ride.Add(ride); // add to list in vehicles
                     foreach (var item in VehicleCollection.Collection[carID].ride)
                     {
+                        txtLog.Text += item.ToString();
                         txtLog.Text += item.road.myWeather.ToString();
                     }
                     CreateProgressBar(200000);
@@ -112,6 +113,7 @@ namespace WPF_Vehicle_Simulator
             int carID = Convert.ToInt32(idBoxShow.Text) - 1;
             foreach (var item in VehicleCollection.Collection[carID].ride)
             {
+                txtLog.Text += item.ToString();
                 txtLog.Text += item.road.myWeather.ToString();
             }
         }

@@ -43,7 +43,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Time}\n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}h\n";
         }
 
         public double GetTime(Road road)
