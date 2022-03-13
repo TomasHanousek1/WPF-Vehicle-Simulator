@@ -68,24 +68,33 @@ namespace WPF_Vehicle_Simulator
             }
         }
     }
-    public class Tunnel
+    public class Tunnel : RodeType
     {
-        public double speedRatio = 0.7;
-        public double Start, Range, End;
-
-        public Tunnel(double start, double end)
+        public Tunnel(double start, double end) : base(start, end)
         {
             Start = start;
             Range = end - start;
             End = end;
+            speedRatio = 0.7;
         }
     }
-    public class Bridge
+    public class Bridge : RodeType
     {
-        public double speedRatio = 0.7;
+        public Bridge(double start, double end) : base(start,end)
+        {
+            Start = start;
+            Range = end - start;
+            End = end;
+            speedRatio = 0.8;
+        }
+    }
+    
+    public class RodeType
+    {
+        public double speedRatio;
         public double Start, Range, End;
 
-        public Bridge(double start, double end)
+        public RodeType(double start, double end)
         {
             Start = start;
             Range = end - start;
