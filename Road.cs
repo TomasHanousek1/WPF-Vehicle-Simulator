@@ -64,6 +64,20 @@ namespace WPF_Vehicle_Simulator
                 }
             }
         }
+        public override string ToString()
+        {
+            string s = "";
+            s += $"Info about weather on rod \n" +
+                $"--------------------------------\n"
+                + myWeather.ToString() +
+                $"--------------------------------\n"
+                ;
+            foreach (var item in RodeObjects)
+            {
+                s += item.ToString();
+            }
+            return s;
+        }
     }
     public class Tunnel : RodeType
     {
@@ -99,6 +113,11 @@ namespace WPF_Vehicle_Simulator
             Start = start;
             Range = end - start;
             End = end;
+        }
+
+        public override string ToString()
+        {
+            return $"{type} |Start: {Start}m | End: {End}m | Range: {Range}m \n"; 
         }
     }
 }
