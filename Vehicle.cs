@@ -43,10 +43,6 @@ namespace WPF_Vehicle_Simulator
             road = new Road(Distance);
             Time = GetTime(road);
         }
-        public override string ToString()
-        {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}h\n";
-        }
 
         public double GetTime(Road road)
         {
@@ -78,6 +74,10 @@ namespace WPF_Vehicle_Simulator
             }
             return 0;
         }
+        public override string ToString()
+        {
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}h\n";
+        }
     }
     public class Vehicle
     {
@@ -90,21 +90,11 @@ namespace WPF_Vehicle_Simulator
             AllID.IDVehiclesCounter++;
             Lights = false;
         }
+
+
         public override string ToString()
         {
-            bool isRide = false; // False = vehicle doesnt have a ride, True = vehicle does have a ride
-            try
-            {
-                if (ride[ID - 1].Distance > 0)
-                    isRide = true;
-            }
-            catch (Exception)
-            {
-                isRide = false;
-            }
-
-            // bool onRide = ride[ID - 1].GetType().GetProperties().All(p => p.GetValue(ride[ID - 1]) != null);
-            return $"Vehicle #{ID} | Lights: {Lights} | Ride: {isRide}\n";
+            return $"Vehicle #{ID} | Lights: {Lights} | Ride: \n";
         }
     }
 }
