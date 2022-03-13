@@ -72,7 +72,7 @@ namespace WPF_Vehicle_Simulator
                         foreach (var item in VehicleCollection.Collection[vehicleID].ride)
                         {
                             txtLog.Text += item.ToString();
-                            txtLog.Text += item.road.myWeather.ToString();
+                            txtLog.Text += item.road.ToString();
                         }
                         CreateProgressBar(ride.Time);
                         MessageBox.Show("Ride created");    
@@ -125,7 +125,7 @@ namespace WPF_Vehicle_Simulator
             foreach (var item in VehicleCollection.Collection[carID].ride)
             {
                 txtLog.Text += item.ToString();
-                txtLog.Text += item.road.myWeather.ToString();
+                txtLog.Text += item.road.ToString();
             }
             sbar.Items.Add(VehicleCollection.BarCollection[carID]);
         }
