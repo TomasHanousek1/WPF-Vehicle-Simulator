@@ -94,7 +94,21 @@ namespace WPF_Vehicle_Simulator
 
         public override string ToString()
         {
-            return $"Vehicle #{ID} | Lights: {Lights} | Ride: \n";
+            bool isRide = false;
+            
+            try
+            {
+                int rideID = VehicleCollection.Collection[ID - 1].ride.Count - 1;
+                if (VehicleCollection.Collection[ID - 1].ride[rideID].Distance > 0)
+                {
+                    isRide = true;
+                }
+            }
+            catch (Exception)
+            {
+                isRide = false;
+            }
+            return $"Vehicle #{ID} | Lights: {Lights} | Ride: {isRide} \n";
         }
     }
 }
