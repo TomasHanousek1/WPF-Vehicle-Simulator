@@ -58,7 +58,7 @@ namespace WPF_Vehicle_Simulator
             timerCount++;
             double weatherSpeedRatio = 1;
             double rodeTypeSpeedRatio = 1;
-            double defaultSpeed = 1000000; // m/s
+            double defaultSpeed = 1000; // m/s
             foreach (var item in road.myWeather.WeatherCollection)
             {
                 if (item.start <= currentDistance && item.end > currentDistance)

@@ -64,18 +64,14 @@ namespace WPF_Vehicle_Simulator
                         {
                             MessageBox.Show("This vehicle already has a ride");
                         }
+                        else
+                        {
+                            CreateRide(startDestination, endDestination, vehicleID);
+                        }
                     }
                     catch (Exception)
                     {
-                        Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[vehicleID]);
-                        VehicleCollection.Collection[vehicleID].ride.Add(ride); // add to list in vehicles
-                        foreach (var item in VehicleCollection.Collection[vehicleID].ride)
-                        {
-                            txtLog.Text += item.ToString();
-                            txtLog.Text += item.road.ToString();
-                        }
-                        //CreateProgressBar(ride.Time);
-                        MessageBox.Show("Ride created");    
+                        CreateRide(startDestination, endDestination, vehicleID);
                     }
                 }
                 else
@@ -88,6 +84,18 @@ namespace WPF_Vehicle_Simulator
             {
                 MessageBox.Show("ID is not valid");
             }
+        }
+        private void CreateRide(Destination startDestination, Destination endDestination, int vehicleID)
+        {
+            Ride ride = new Ride(startDestination, endDestination, VehicleCollection.Collection[vehicleID]);
+            VehicleCollection.Collection[vehicleID].ride.Add(ride); // add to list in vehicles
+            foreach (var item in VehicleCollection.Collection[vehicleID].ride)
+            {
+                txtLog.Text += item.ToString();
+                txtLog.Text += item.road.ToString();
+            }
+            //CreateProgressBar(ride.Time);
+            MessageBox.Show("Ride created");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)// just check for now
