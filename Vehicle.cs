@@ -58,7 +58,7 @@ namespace WPF_Vehicle_Simulator
             timerCount++;
             double weatherSpeedRatio = 1;
             double rodeTypeSpeedRatio = 1;
-            double defaultSpeed = 1000; // m/s
+            double defaultSpeed = 1000000; // m/s
             foreach (var item in road.myWeather.WeatherCollection)
             {
                 if (item.start <= currentDistance && item.end > currentDistance)
@@ -84,6 +84,7 @@ namespace WPF_Vehicle_Simulator
             currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
             if (currentDistance >= Distance)
             {
+                MessageBox.Show($"Vehicle #{vehicle.ID} arrived to the destionation!");
                 currentDistance = Distance;
                 isRide = false;
                 disTmr.Stop();
@@ -131,7 +132,7 @@ namespace WPF_Vehicle_Simulator
             try
             {
                 int rideID = VehicleCollection.Collection[ID - 1].ride.Count - 1;
-                if (VehicleCollection.Collection[ID - 1].ride[rideID].Distance > 0)
+                if (VehicleCollection.Collection[ID - 1].ride[rideID].isRide == true)
                 {
                     isRide = true;
                 }
