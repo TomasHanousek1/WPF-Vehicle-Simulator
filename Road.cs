@@ -7,7 +7,7 @@ namespace WPF_Vehicle_Simulator
     public class Road
     {
         public List<Tunnel> TunnelsList = new List<Tunnel>();
-        public List<double> BridgesList = new List<double>();
+        public List<Bridge> BridgesList = new List<Bridge>();
 
         public WeatherList myWeather;
         public Road(double distance)
@@ -36,17 +36,35 @@ namespace WPF_Vehicle_Simulator
         
         public void GetBridges(double distance)
         {
-            if (distance == 200000) // On the road from Prague to Brno there are 3 bridges 
+            int numBridges = rn.Next(1, Convert.ToInt32(distance / 75000)); // max 1 tunnel on every 75Km
+            double startDistance = 0; //start distance of current WeatherBlock
+            double endDistance = 0;
+            int startNumW = 0; //getting current number of WeatherBlock
+            for (int i = 0; i < numBridges; numBridges--, startNumW++)
             {
-                //1. bridge - 1000m long
-                BridgesList.Add(1000); // Start of bridge
-                BridgesList.Add(2000); // End of bridge
-                //2. bridge
-                BridgesList.Add(90000);
-                BridgesList.Add(90500);
-                //3. bridge
-                BridgesList.Add(150000);
-                BridgesList.Add(152000);
+                bool bridgeAdded = false;
+                double nowStartDistance = rn.Next((int)endDistance + (int)(distance / 100), (int)distance / numBridges);
+                double nowEndDistance = nowStartDistance + rn.Next(2000, 8000);
+                Bridge bridge = new Bridge(nowStartDistance, nowEndDistance);
+                foreach (var item in TunnelsList)
+                {
+                    if ((item.Start < nowStartDistance && item.End < nowEndDistance) || (item.Start > nowStartDistance && item.End > nowEndDistance))
+                    {
+                        BridgesList.Add(bridge);
+                        bridgeAdded = true;
+                        break;
+                    }
+                }
+                if (bridgeAdded)
+                {
+                    startDistance = nowStartDistance;
+                    endDistance = nowEndDistance;
+                }
+                else
+                {
+                    numBridges++;
+                    startNumW--;
+                }
             }
         }
     }
@@ -56,6 +74,18 @@ namespace WPF_Vehicle_Simulator
         public double Start, Range, End;
 
         public Tunnel(double start, double end)
+        {
+            Start = start;
+            Range = end - start;
+            End = end;
+        }
+    }
+    public class Bridge
+    {
+        public double speedRatio = 0.7;
+        public double Start, Range, End;
+
+        public Bridge(double start, double end)
         {
             Start = start;
             Range = end - start;
