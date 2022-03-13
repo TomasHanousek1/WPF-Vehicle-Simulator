@@ -32,7 +32,7 @@ namespace WPF_Vehicle_Simulator
         public int timerCount = 0;
 
         public double Distance { get; set; }
-        public double Time { get; set; }
+        public bool isRide { get; set; }
         public Road road;
         public Vehicle vehicle;
 
@@ -45,7 +45,7 @@ namespace WPF_Vehicle_Simulator
             EndPoint = endPoint;
             Distance = GetDistance(startPoint, endPoint);
             road = new Road(Distance);
-            Time = GetTime(road);
+            isRide = true;
 
             disTmr.Tick += new EventHandler(disTmr_Tick);
             disTmr.Interval = new TimeSpan(0, 0, 1);
@@ -82,20 +82,12 @@ namespace WPF_Vehicle_Simulator
                 }
             }
             currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
-        }
-
-        public double GetTime(Road road)
-        {
-            double time = 0;
-            foreach (var item in road.myWeather.WeatherCollection)
+            if (currentDistance >= Distance)
             {
-                double range = item.range;
-                double speed = 110000; // Default speed is 110 km/h
-                double speedRatio = item.WBWeather.SpeedRatio;
-
-                time += range / (speed * speedRatio);
+                currentDistance = Distance;
+                isRide = false;
+                disTmr.Stop();
             }
-            return time;
         }
 
         public double GetDistance(Destination startPoint, Destination endPoint)
@@ -116,7 +108,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}| {currentDistance}m\n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | {currentDistance}m\n";
         }
     }
     public class Vehicle
