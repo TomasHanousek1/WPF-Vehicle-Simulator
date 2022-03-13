@@ -36,7 +36,6 @@ namespace WPF_Vehicle_Simulator
         public void GetBridges(double distance)
         {
             int numBridges = rn.Next(1, Convert.ToInt32(distance / 75000)); // max 1 tunnel on every 75Km
-            double startDistance = 0; //start distance of current WeatherBlock
             double endDistance = 0;
             int startNumW = 0; //getting current number of WeatherBlock
             for (int i = 0; i < numBridges; numBridges--, startNumW++)
@@ -56,7 +55,6 @@ namespace WPF_Vehicle_Simulator
                 }
                 if (bridgeAdded)
                 {
-                    startDistance = nowStartDistance;
                     endDistance = nowEndDistance;
                 }
                 else
