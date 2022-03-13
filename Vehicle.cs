@@ -30,6 +30,7 @@ namespace WPF_Vehicle_Simulator
     {
         DispatcherTimer disTmr = new DispatcherTimer();
         public int timerCount = 0;
+        public double currentDistance = 0;
 
         public double Distance { get; set; }
         public double Time { get; set; }
@@ -55,6 +56,7 @@ namespace WPF_Vehicle_Simulator
         public void disTmr_Tick(object sender, EventArgs e)
         {
             timerCount++;
+
         }
 
         public double GetTime(Road road)

@@ -74,7 +74,7 @@ namespace WPF_Vehicle_Simulator
                             txtLog.Text += item.ToString();
                             txtLog.Text += item.road.ToString();
                         }
-                        CreateProgressBar(ride.Time);
+                        //CreateProgressBar(ride.Time);
                         MessageBox.Show("Ride created");    
                     }
                 }
@@ -102,32 +102,32 @@ namespace WPF_Vehicle_Simulator
             //txtLog.Text += VehicleCollection.Collection[Convert.ToInt32(carID - 1)].ride.road.myWeather.ToString();*/
         }
 
-        public void CreateProgressBar(double time)
-        {
-            ProgressBar pb = new ProgressBar();
-            VehicleCollection.BarCollection.Add(pb);
-            pb.IsIndeterminate = false;
-            pb.Orientation = Orientation.Horizontal;
-            pb.Width = 300;
-            pb.Height = 30;
-            double speedFaster = 10; // Progressbar will load 10* faster
-            Duration dur = new Duration(TimeSpan.FromHours(time / speedFaster));
-            DoubleAnimation ani = new DoubleAnimation(100.0, dur);
-            pb.BeginAnimation(ProgressBar.ValueProperty, ani);
-            sbar.Items.Add(pb);
-        }
+        //public void CreateProgressBar(double time)
+        //{
+        //    ProgressBar pb = new ProgressBar();
+        //    VehicleCollection.BarCollection.Add(pb);
+        //    pb.IsIndeterminate = false;
+        //    pb.Orientation = Orientation.Horizontal;
+        //    pb.Width = 300;
+        //    pb.Height = 30;
+        //    double speedFaster = 10; // Progressbar will load 10* faster
+        //    Duration dur = new Duration(TimeSpan.FromHours(time / speedFaster));
+        //    DoubleAnimation ani = new DoubleAnimation(100.0, dur);
+        //    pb.BeginAnimation(ProgressBar.ValueProperty, ani);
+        //    sbar.Items.Add(pb);
+        //}
 
         private void btnShowVehicle_Click(object sender, RoutedEventArgs e)
         {
             txtLog.Clear();
-            sbar.Items.Clear();
+            //sbar.Items.Clear();
             int carID = Convert.ToInt32(idBoxShow.Text) - 1;
             foreach (var item in VehicleCollection.Collection[carID].ride)
             {
                 txtLog.Text += item.ToString();
                 txtLog.Text += item.road.ToString();
             }
-            sbar.Items.Add(VehicleCollection.BarCollection[carID]);
+            //sbar.Items.Add(VehicleCollection.BarCollection[carID]);
         }
     }
 }
