@@ -74,9 +74,6 @@ namespace WPF_Vehicle_Simulator
                     rodeTypeSpeedRatio = item.speedRatio;
                     if (item.type == "Tunnel")
                     {
-                    }
-                    else
-                    {
                         weatherSpeedRatio = 1;
                     }
                 }
