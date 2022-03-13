@@ -6,8 +6,7 @@ namespace WPF_Vehicle_Simulator
 {
     public class Road
     {
-        public List<Tunnel> TunnelsList = new List<Tunnel>();
-        public List<Bridge> BridgesList = new List<Bridge>();
+        public List<RodeType> RodeObjects = new List<RodeType>();
 
         public WeatherList myWeather;
         public Road(double distance)
@@ -30,7 +29,7 @@ namespace WPF_Vehicle_Simulator
                 startDistance = rn.Next((int)endDistance + (int)(distance/100), (int)distance / numTunnels);
                 endDistance = startDistance + rn.Next(2000, 8000);
                 Tunnel tunnel = new Tunnel(startDistance, endDistance);
-                TunnelsList.Add(tunnel);
+                RodeObjects.Add(tunnel);
             }
         }
         
@@ -46,11 +45,11 @@ namespace WPF_Vehicle_Simulator
                 double nowStartDistance = rn.Next((int)endDistance + (int)(distance / 100), (int)distance / numBridges);
                 double nowEndDistance = nowStartDistance + rn.Next(2000, 8000);
                 Bridge bridge = new Bridge(nowStartDistance, nowEndDistance);
-                foreach (var item in TunnelsList)
+                foreach (var item in RodeObjects)
                 {
                     if ((item.Start < nowStartDistance && item.End < nowEndDistance) || (item.Start > nowStartDistance && item.End > nowEndDistance))
                     {
-                        BridgesList.Add(bridge);
+                        RodeObjects.Add(bridge);
                         bridgeAdded = true;
                         break;
                     }
@@ -76,6 +75,7 @@ namespace WPF_Vehicle_Simulator
             Range = end - start;
             End = end;
             speedRatio = 0.7;
+            type = "Tunnel";
         }
     }
     public class Bridge : RodeType
@@ -86,11 +86,13 @@ namespace WPF_Vehicle_Simulator
             Range = end - start;
             End = end;
             speedRatio = 0.8;
+            type = "Bridge";
         }
     }
     
     public class RodeType
     {
+        public string type;
         public double speedRatio;
         public double Start, Range, End;
 
