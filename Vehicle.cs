@@ -4,6 +4,7 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Animation;
+using System.Windows.Threading;
 
 namespace WPF_Vehicle_Simulator
 {
@@ -27,6 +28,9 @@ namespace WPF_Vehicle_Simulator
 
     public class Ride
     {
+        DispatcherTimer disTmr = new DispatcherTimer();
+        public int timerCount = 0;
+
         public double Distance { get; set; }
         public double Time { get; set; }
         public Road road;
@@ -42,6 +46,15 @@ namespace WPF_Vehicle_Simulator
             Distance = GetDistance(startPoint, endPoint);
             road = new Road(Distance);
             Time = GetTime(road);
+
+            disTmr.Tick += new EventHandler(disTmr_Tick);
+            disTmr.Interval = new TimeSpan(0, 0, 1);
+            disTmr.Start();
+        }
+
+        public void disTmr_Tick(object sender, EventArgs e)
+        {
+            timerCount++;
         }
 
         public double GetTime(Road road)
@@ -76,7 +89,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}h\n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}| {timerCount}m\n";
         }
     }
     public class Vehicle
@@ -95,7 +108,7 @@ namespace WPF_Vehicle_Simulator
         public override string ToString()
         {
             bool isRide = false;
-            
+
             try
             {
                 int rideID = VehicleCollection.Collection[ID - 1].ride.Count - 1;
