@@ -30,7 +30,6 @@ namespace WPF_Vehicle_Simulator
     {
         DispatcherTimer disTmr = new DispatcherTimer();
         public int timerCount = 0;
-        public double currentDistance = 0;
 
         public double Distance { get; set; }
         public double Time { get; set; }
@@ -53,10 +52,36 @@ namespace WPF_Vehicle_Simulator
             disTmr.Start();
         }
 
+        public double currentDistance = 0;
         public void disTmr_Tick(object sender, EventArgs e)
         {
             timerCount++;
-
+            double weatherSpeedRatio = 1;
+            double rodeTypeSpeedRatio = 1;
+            double defaultSpeed = 1000; // m/s
+            foreach (var item in road.myWeather.WeatherCollection)
+            {
+                if (item.start <= currentDistance && item.end > currentDistance)
+                {
+                    weatherSpeedRatio = item.WBWeather.SpeedRatio;
+                    break;
+                }
+            }
+            foreach (var item in road.RodeObjects)
+            {
+                if (item.Start <= currentDistance && item.End > currentDistance)
+                {
+                    rodeTypeSpeedRatio = item.speedRatio;
+                    if (item.type == "Tunnel")
+                    {
+                    }
+                    else
+                    {
+                        weatherSpeedRatio = 1;
+                    }
+                }
+            }
+            currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
         }
 
         public double GetTime(Road road)
@@ -91,7 +116,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}| {timerCount}m\n";
+            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | Time: {Math.Round(Time, 2)}| {currentDistance}m\n";
         }
     }
     public class Vehicle

@@ -86,7 +86,7 @@ namespace WPF_Vehicle_Simulator
             Start = start;
             Range = end - start;
             End = end;
-            speedRatio = 0.7;
+            speedRatio = 0.6;
             type = "Tunnel";
         }
     }
@@ -97,7 +97,7 @@ namespace WPF_Vehicle_Simulator
             Start = start;
             Range = end - start;
             End = end;
-            speedRatio = 0.8;
+            speedRatio = 0.85;
             type = "Bridge";
         }
     }

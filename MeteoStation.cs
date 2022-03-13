@@ -144,7 +144,7 @@ namespace WPF_Vehicle_Simulator
                     break;
                 case WeatherType.Rainy:
                     Temperature = rn.Next(0, 23);
-                    SpeedRatio = 0.9;
+                    SpeedRatio = 0.8;
                     break;
                 case WeatherType.Freeze:
                     Temperature = rn.Next(-10, -1);
