@@ -3,34 +3,74 @@ using System;
 namespace WPF_Vehicle_Simulator
 {
 
-    public class Service
+    public class Services
     {
-        int numService;
+        double Distance;
         public List<ServiceSpot> serviceSpots = new List<ServiceSpot>();
 
-        public Service()
+        public Services(double distance, List<RodeObject> rodeTypes)
         {
-            
+            Distance = distance;
+            GetServiceOnRode(rodeTypes);
         }
 
-        public void GetServiceOnRode()
+        Random rn = new Random();
+        public void GetServiceOnRode(List<RodeObject> rodeTypes)
         {
-            for (int i = 0; i < numService; i++)
+            int numServices = rn.Next(1, Convert.ToInt32(Distance / 90000)); // 1 in 90km
+            double Location = 0;
+            int startNumW = 0; 
+            for (int i = 0; i < numServices; numServices--, startNumW++)
             {
-                ServiceSpot s = new ServiceSpot(0);
-                serviceSpots.Add(s);
+                bool serviceAdded = false;
+                double nowLocation = rn.Next((int)Location + (int)(Distance/ 100), (int)Distance / numServices);
+                ServiceSpot service = new ServiceSpot(nowLocation);
+                foreach (var item in rodeTypes)
+                {
+                    if ((item.Start < Location && item.End < Location) || (item.Start > Location && item.End > Location))
+                    {
+                        serviceSpots.Add(service);
+                        serviceAdded = true;
+                        break;
+                    }
+                }
+                if (serviceAdded)
+                {
+                    Location = nowLocation;
+                }
+                else
+                {
+                    numServices++;
+                    startNumW--;
+                }
             }
-        }       
+        }
+        public override string ToString()
+        {
+            string s = "";
+            foreach (var item in serviceSpots)
+            {
+                s += item.ToString();
+            }
+            return s;
+        }
     }
+
 
     public class ServiceSpot
     {
-        public ServiceSpot(double serviceLocation)
+        public double Position;
+        public ServiceSpot(double position)
         {
-            this.serviceLocation = serviceLocation;
+            Position = position;
         }
-
-        public double serviceLocation { get; set; }
+        public override string ToString()
+        {
+            string s = "";
+            s += $" Service | Position {Position}m\n";
+            return s;
+            
+        }
 
     }
 

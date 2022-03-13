@@ -6,15 +6,16 @@ namespace WPF_Vehicle_Simulator
 {
     public class Road
     {
-        public List<RodeType> RodeObjects = new List<RodeType>();
+        public List<RodeObject> RodeObjects = new List<RodeObject>();
 
         public WeatherList myWeather;
+        public Services services;
         public Road(double distance)
         {
             myWeather = new WeatherList(distance);
-            Service service = new Service();
             GetTunnels(distance);
             GetBridges(distance);
+            services = new Services(distance, RodeObjects);
         }
 
         private Random rn = new Random();
@@ -76,10 +77,14 @@ namespace WPF_Vehicle_Simulator
             {
                 s += item.ToString();
             }
+
+            s += $"--------------------------------\n" +
+                    services.ToString() +
+                $"--------------------------------\n";
             return s;
         }
     }
-    public class Tunnel : RodeType
+    public class Tunnel : RodeObject
     {
         public Tunnel(double start, double end) : base(start, end)
         {
@@ -90,7 +95,7 @@ namespace WPF_Vehicle_Simulator
             type = "Tunnel";
         }
     }
-    public class Bridge : RodeType
+    public class Bridge : RodeObject
     {
         public Bridge(double start, double end) : base(start,end)
         {
@@ -102,13 +107,15 @@ namespace WPF_Vehicle_Simulator
         }
     }
     
-    public class RodeType
+    
+
+    public class RodeObject
     {
         public string type;
         public double speedRatio;
         public double Start, Range, End;
 
-        public RodeType(double start, double end)
+        public RodeObject(double start, double end)
         {
             Start = start;
             Range = end - start;
@@ -117,7 +124,7 @@ namespace WPF_Vehicle_Simulator
 
         public override string ToString()
         {
-            return $"{type} |Start: {Start}m | End: {End}m | Range: {Range}m \n"; 
+            return $"{type} | Start: {Start}m | End: {End}m | Range: {Range}m \n"; 
         }
     }
 }
