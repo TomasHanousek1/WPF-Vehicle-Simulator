@@ -68,7 +68,7 @@ namespace WPF_Vehicle_Simulator
         public override string ToString()
         {
             string s = "";
-            s += $"Info about weather on rod \n" +
+            s += 
                 $"--------------------------------\n"
                 + myWeather.ToString() +
                 $"--------------------------------\n"

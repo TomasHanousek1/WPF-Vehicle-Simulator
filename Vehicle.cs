@@ -74,9 +74,14 @@ namespace WPF_Vehicle_Simulator
                     rodeTypeSpeedRatio = item.speedRatio;
                     if (item.type == "Tunnel")
                     {
+                        vehicle.Lights = true;
                         weatherSpeedRatio = 1;
                     }
                 }
+            }
+            if (rodeTypeSpeedRatio == 1)
+            {
+                vehicle.Lights = false;
             }
             currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
             if (currentDistance >= Distance)
@@ -106,7 +111,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Start: {StartPoint} | End: {EndPoint} | {timerCount}min: {currentDistance}m\n";
+            return $"Ride of vehilce #{vehicle.ID} | Lights {vehicle.Lights}| Start: {StartPoint} | End: {EndPoint} | {timerCount}min: {currentDistance}m\n";
         }
     }
     public class Vehicle
