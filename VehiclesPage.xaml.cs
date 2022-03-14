@@ -131,17 +131,24 @@ namespace WPF_Vehicle_Simulator
             txtLog.Clear();
             //sbar.Items.Clear();
             int vehicleID = Convert.ToInt32(idBoxShow.Text) - 1;
-
-            foreach (var item in VehicleCollection.Collection[vehicleID].ride)
+            try
             {
-                if (item.vehicle.CanRide == false)
+                foreach (var item in VehicleCollection.Collection[vehicleID].ride)
                 {
-                    int x = item.vehicle.HistoryOfErrors.Count - 1;
-                    txtLog.Text += item.vehicle.HistoryOfErrors[x].ToString();
+                    if (item.vehicle.CanRide == false)
+                    {
+                        int x = item.vehicle.HistoryOfErrors.Count - 1;
+                        txtLog.Text += item.vehicle.HistoryOfErrors[x].ToString();
+                    }
+                    txtLog.Text += item.ToString();
+                    txtLog.Text += item.road.ToString();
                 }
-                txtLog.Text += item.ToString();
-                txtLog.Text += item.road.ToString();
             }
+            catch (Exception)
+            {
+                MessageBox.Show("ID is not valid");
+            }
+
             //sbar.Items.Add(VehicleCollection.BarCollection[carID]);
         }
     }

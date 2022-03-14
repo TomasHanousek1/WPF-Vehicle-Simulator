@@ -147,7 +147,7 @@ namespace WPF_Vehicle_Simulator
         }
         public override string ToString()
         {
-            return $"Ride of vehilce #{vehicle.ID} | Lights {vehicle.Lights}| Start: {StartPoint} | End: {EndPoint} | {timerCount}min: {currentDistance}m\n";
+            return $"Ride of vehilce #{vehicle.ID} | Lights {vehicle.Lights}| Start: {StartPoint} | End: {EndPoint} | {timerCount}min: {currentDistance}m {currentDistance / Distance * 100}%\n";
         }
     }
     public class Vehicle
