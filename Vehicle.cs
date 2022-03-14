@@ -182,7 +182,7 @@ namespace WPF_Vehicle_Simulator
             {
                 isRide = false;
             }
-            return $"Vehicle #{ID} | Lights: {Lights} | Ride: {isRide} \n";
+            return $"Vehicle #{ID} | Lights: {Lights} | Vehicle on ride: {isRide} | Vehicle can ride: {CanRide}  \n";
         }
     }
 }
