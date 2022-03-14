@@ -102,6 +102,7 @@ namespace WPF_Vehicle_Simulator
         {
             Vehicle vehicle = new Vehicle();
             VehicleCollection.Collection.Add(vehicle);
+            txtLog.Text += vehicle.ToString();
             MessageBox.Show("Vehicle created");
             /*txtLog.Clear();
 
@@ -130,6 +131,7 @@ namespace WPF_Vehicle_Simulator
             txtLog.Clear();
             //sbar.Items.Clear();
             int vehicleID = Convert.ToInt32(idBoxShow.Text) - 1;
+
             foreach (var item in VehicleCollection.Collection[vehicleID].ride)
             {
                 txtLog.Text += item.ToString();
