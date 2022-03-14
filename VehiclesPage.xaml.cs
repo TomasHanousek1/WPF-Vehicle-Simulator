@@ -134,6 +134,11 @@ namespace WPF_Vehicle_Simulator
 
             foreach (var item in VehicleCollection.Collection[vehicleID].ride)
             {
+                if (item.vehicle.CanRide == false)
+                {
+                    int x = item.vehicle.HistoryOfErrors.Count - 1;
+                    txtLog.Text += item.vehicle.HistoryOfErrors[x].ToString();
+                }
                 txtLog.Text += item.ToString();
                 txtLog.Text += item.road.ToString();
             }

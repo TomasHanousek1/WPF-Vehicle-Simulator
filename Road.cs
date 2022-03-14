@@ -64,6 +64,7 @@ namespace WPF_Vehicle_Simulator
                     startNumW--;
                 }
             }
+            
         }
         public override string ToString()
         {

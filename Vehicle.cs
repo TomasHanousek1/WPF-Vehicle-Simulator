@@ -52,45 +52,69 @@ namespace WPF_Vehicle_Simulator
             disTmr.Start();
         }
 
+        Random rn = new Random();
         public double currentDistance = 0;
         public void disTmr_Tick(object sender, EventArgs e)
         {
-            timerCount++;
-            double weatherSpeedRatio = 1;
-            double rodeTypeSpeedRatio = 1;
-            double defaultSpeed = 1000; // m/s
-            foreach (var item in road.myWeather.WeatherCollection)
+            if (vehicle.CanRide == true)
             {
-                if (item.start <= currentDistance && item.end > currentDistance)
+                timerCount++;
+                double weatherSpeedRatio = 1;
+                double rodeTypeSpeedRatio = 1;
+                double defaultSpeed = 1000; // m/s
+                foreach (var item in road.myWeather.WeatherCollection)
                 {
-                    weatherSpeedRatio = item.WBWeather.SpeedRatio;
-                    break;
-                }
-            }
-            foreach (var item in road.RodeObjects)
-            {
-                if (item.Start <= currentDistance && item.End > currentDistance)
-                {
-                    rodeTypeSpeedRatio = item.speedRatio;
-                    if (item.type == "Tunnel")
+                    if (item.start <= currentDistance && item.end > currentDistance)
                     {
-                        vehicle.Lights = true;
-                        weatherSpeedRatio = 1;
+                        weatherSpeedRatio = item.WBWeather.SpeedRatio;
+                        break;
                     }
                 }
+                foreach (var item in road.RodeObjects)
+                {
+                    if (item.Start <= currentDistance && item.End > currentDistance)
+                    {
+                        rodeTypeSpeedRatio = item.speedRatio;
+                        if (item.type == "Tunnel")
+                        {
+                            vehicle.Lights = true;
+                            weatherSpeedRatio = 1;
+                        }
+                    }
+                }
+                if (rodeTypeSpeedRatio == 1)
+                {
+                    vehicle.Lights = false;
+                }
+                currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
+                if (currentDistance >= Distance)
+                {
+                    MessageBox.Show($"Vehicle #{vehicle.ID} arrived to the destionation!");
+                    currentDistance = Distance;
+                    isRide = false;
+                    disTmr.Stop();
+                }
+
+                if (rn.Next(1, 5) == 2)
+                {
+                    VehicleErrors vehicleErrors = new VehicleErrors();
+                    vehicle.HistoryOfErrors.Add(vehicleErrors);
+                    vehicle.CanRide = vehicleErrors.CanRide;
+                    
+                }
             }
-            if (rodeTypeSpeedRatio == 1)
+            else
             {
-                vehicle.Lights = false;
-            }
-            currentDistance += (defaultSpeed * weatherSpeedRatio * rodeTypeSpeedRatio);
-            if (currentDistance >= Distance)
-            {
-                MessageBox.Show($"Vehicle #{vehicle.ID} arrived to the destionation!");
-                currentDistance = Distance;
-                isRide = false;
                 disTmr.Stop();
+                
             }
+
+        }
+        public double FindNearService(double yourPosition, List<ServiceSpot> serviceSpots)
+        {
+            //vyhledat v listu
+            double distance = 0;
+            return distance;
         }
 
         public double GetDistance(Destination startPoint, Destination endPoint)
@@ -116,14 +140,17 @@ namespace WPF_Vehicle_Simulator
     }
     public class Vehicle
     {
+        public List<VehicleErrors> HistoryOfErrors = new List<VehicleErrors>();
         public List<Ride> ride = new List<Ride>();
         public int ID { get; set; }
+        public bool CanRide { get; set; }
         public bool Lights { get; set; }
         public Vehicle()
         {
             ID = AllID.IDVehiclesCounter;
             AllID.IDVehiclesCounter++;
             Lights = false;
+            CanRide = true;
         }
 
 
