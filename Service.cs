@@ -27,12 +27,13 @@ namespace WPF_Vehicle_Simulator
                 ServiceSpot service = new ServiceSpot(nowLocation);
                 foreach (var item in rodeTypes)
                 {
-                    if ((item.Start < Location && item.End < Location) || (item.Start > Location && item.End > Location))
+                    if ((item.Start > nowLocation && item.End > nowLocation) || (nowLocation > rodeTypes[rodeTypes.Count - 1].End))
                     {
                         serviceSpots.Add(service);
                         serviceAdded = true;
                         break;
                     }
+                    
                 }
                 if (serviceAdded)
                 {

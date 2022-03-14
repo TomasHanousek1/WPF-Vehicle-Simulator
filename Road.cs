@@ -47,7 +47,7 @@ namespace WPF_Vehicle_Simulator
                 Bridge bridge = new Bridge(nowStartDistance, nowEndDistance);
                 foreach (var item in RodeObjects)
                 {
-                    if ((item.Start < nowStartDistance && item.End < nowEndDistance) || (item.Start > nowStartDistance && item.End > nowEndDistance))
+                    if (((item.Start > nowEndDistance) && (item.End > nowEndDistance)) || (nowStartDistance > RodeObjects[RodeObjects.Count - 1].End))
                     {
                         RodeObjects.Add(bridge);
                         bridgeAdded = true;
