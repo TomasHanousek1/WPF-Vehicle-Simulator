@@ -95,12 +95,15 @@ namespace WPF_Vehicle_Simulator
                     disTmr.Stop();
                 }
 
-                if (rn.Next(1, 5) == 2)
+                if (rn.Next(1, 300) == 7)
                 {
                     VehicleErrors vehicleErrors = new VehicleErrors();
                     vehicle.HistoryOfErrors.Add(vehicleErrors);
                     vehicle.CanRide = vehicleErrors.CanRide;
-                    
+                    if (vehicle.CanRide)
+                    {
+                        //FindNearService(currentDistance, road.services.serviceSpots);
+                    }
                 }
             }
             else
@@ -110,12 +113,21 @@ namespace WPF_Vehicle_Simulator
             }
 
         }
-        public double FindNearService(double yourPosition, List<ServiceSpot> serviceSpots)
+       /* public double FindNearService(double yourPosition, List<ServiceSpot> serviceSpots)
         {
-            //vyhledat v listu
-            double distance = 0;
-            return distance;
-        }
+            double distanceToService;
+            double previusServiceDis;
+            int shortestServiceID;
+            foreach (var item in serviceSpots)
+            {
+                double myDistance = item.Position - yourPosition
+                if ()
+                {
+
+                }
+            }
+            return distanceToService;
+        }*/
 
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
