@@ -93,6 +93,7 @@ namespace WPF_Vehicle_Simulator
             {
                 VehicleError vehicleError = new VehicleError();
                 vehicleErrorsCollection.Add(vehicleError);
+                // Tady udělat Event
             }
         }
         
@@ -134,10 +135,7 @@ namespace WPF_Vehicle_Simulator
         {
             MyErrors += GetError;
 
-            if (MyErrors != null)
-            {
-                MyErrors();
-            }
+            MyErrors?.Invoke();
         }
 
         public void GetError()

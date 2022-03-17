@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -95,39 +96,52 @@ namespace WPF_Vehicle_Simulator
                     disTmr.Stop();
                 }
 
-                if (rn.Next(1, 300) == 7)
+                if (rn.Next(1, 8) == 7)
                 {
                     VehicleErrors vehicleErrors = new VehicleErrors();
                     vehicle.HistoryOfErrors.Add(vehicleErrors);
                     vehicle.CanRide = vehicleErrors.CanRide;
-                    if (vehicle.CanRide)
+                    if (vehicle.CanRide == false)
                     {
-                        //FindNearService(currentDistance, road.services.serviceSpots);
+                        double distanceToService = FindNearService(currentDistance, road.services.serviceSpots);
+                        Debug.WriteLine(distanceToService);
                     }
                 }
             }
             else
             {
-                disTmr.Stop();
-                
+                disTmr.Stop(); 
             }
 
         }
-       /* public double FindNearService(double yourPosition, List<ServiceSpot> serviceSpots)
+        public double FindNearService(double yourPosition, List<ServiceSpot> serviceSpots)
         {
             double distanceToService;
-            double previusServiceDis;
-            int shortestServiceID;
+            double previusMyDystance;
+
             foreach (var item in serviceSpots)
             {
-                double myDistance = item.Position - yourPosition
-                if ()
+                if (serviceSpots.Count == 1)
                 {
-
+                    distanceToService = Math.Abs(item.Position - yourPosition);
+                    return distanceToService;
+                }
+                else
+                {
+                    previusMyDystance = Math.Abs(item.Position - yourPosition);
+                    foreach (var service in serviceSpots)
+                    {
+                        distanceToService = Math.Abs(service.Position - yourPosition);
+                        if (previusMyDystance < distanceToService)
+                        {
+                            previusMyDystance = distanceToService;
+                        }
+                    }
+                    return previusMyDystance;
                 }
             }
-            return distanceToService;
-        }*/
+            return 0;
+        }
 
         public double GetDistance(Destination startPoint, Destination endPoint)
         {
